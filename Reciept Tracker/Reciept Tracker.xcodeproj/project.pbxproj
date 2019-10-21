@@ -40,7 +40,11 @@
 		FA0354B4235E1D3E0046047F = {
 			isa = PBXGroup;
 			children = (
-				FA0354D4235E1D530046047F /* Model */,
+				FA0354D8235E23CB0046047F /* Controllers */,
+				FA0354D5235E21DE0046047F /* View Controllers */,
+				FA0354D7235E229D0046047F /* Views */,
+				FA0354D6235E21F40046047F /* Model Controllers */,
+				FA0354D4235E1D530046047F /* Models */,
 				FA0354BF235E1D3F0046047F /* Reciept Tracker */,
 				FA0354BE235E1D3F0046047F /* Products */,
 			);
@@ -68,11 +72,39 @@
 			path = "Reciept Tracker";
 			sourceTree = "<group>";
 		};
-		FA0354D4235E1D530046047F /* Model */ = {
+		FA0354D4235E1D530046047F /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FA0354D5235E21DE0046047F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FA0354D6235E21F40046047F /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		FA0354D7235E229D0046047F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA0354D8235E23CB0046047F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
