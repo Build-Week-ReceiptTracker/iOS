@@ -19,6 +19,10 @@
 		FA0354DA235E60C80046047F /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354D9235E60C80046047F /* LogInController.swift */; };
 		FA0354DC235E62B60046047F /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354DB235E62B60046047F /* Bearer.swift */; };
 		FA0354DE235E63BB0046047F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354DD235E63BB0046047F /* User.swift */; };
+		FA0354E0235E78930046047F /* ReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354DF235E78930046047F /* ReceiptTableViewCell.swift */; };
+		FA0354E2235E79D60046047F /* ReceiptsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E1235E79D60046047F /* ReceiptsTableViewController.swift */; };
+		FA0354E4235E79FC0046047F /* ReceiptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E3235E79FC0046047F /* ReceiptDetailViewController.swift */; };
+		FA0354E8235E7BAA0046047F /* ReceiptLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E7235E7BAA0046047F /* ReceiptLogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		FA0354D9235E60C80046047F /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		FA0354DB235E62B60046047F /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		FA0354DD235E63BB0046047F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA0354DF235E78930046047F /* ReceiptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReceiptTableViewCell.swift; path = Views/ReceiptTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		FA0354E1235E79D60046047F /* ReceiptsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsTableViewController.swift; sourceTree = "<group>"; };
+		FA0354E3235E79FC0046047F /* ReceiptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailViewController.swift; sourceTree = "<group>"; };
+		FA0354E7235E7BAA0046047F /* ReceiptLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptLogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,9 @@
 		FA0354D5235E21DE0046047F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA0354E1235E79D60046047F /* ReceiptsTableViewController.swift */,
+				FA0354E3235E79FC0046047F /* ReceiptDetailViewController.swift */,
+				FA0354E7235E7BAA0046047F /* ReceiptLogInViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -114,6 +125,7 @@
 		FA0354D7235E229D0046047F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA0354DF235E78930046047F /* ReceiptTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -200,10 +212,14 @@
 				A69EF72E235E56B8005C165D /* ReceiptController.swift in Sources */,
 				FA0354C1235E1D3F0046047F /* AppDelegate.swift in Sources */,
 				FA0354DA235E60C80046047F /* LogInController.swift in Sources */,
+				FA0354E0235E78930046047F /* ReceiptTableViewCell.swift in Sources */,
+				FA0354E8235E7BAA0046047F /* ReceiptLogInViewController.swift in Sources */,
 				A69EF727235E49DB005C165D /* ReceiptTracker.xcdatamodeld in Sources */,
 				FA0354DE235E63BB0046047F /* User.swift in Sources */,
 				FA0354C3235E1D3F0046047F /* SceneDelegate.swift in Sources */,
+				FA0354E2235E79D60046047F /* ReceiptsTableViewController.swift in Sources */,
 				A69EF72C235E538E005C165D /* Receipt+Convenience.swift in Sources */,
+				FA0354E4235E79FC0046047F /* ReceiptDetailViewController.swift in Sources */,
 				A69EF72A235E5339005C165D /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
