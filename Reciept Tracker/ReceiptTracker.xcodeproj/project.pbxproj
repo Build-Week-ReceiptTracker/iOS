@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FA0354BD235E1D3F0046047F /* Reciept Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reciept Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0354BD235E1D3F0046047F /* ReceiptTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0354C0235E1D3F0046047F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA0354C2235E1D3F0046047F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FA0354C7235E1D3F0046047F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,7 +42,6 @@
 				FA0354D5235E21DE0046047F /* View Controllers */,
 				FA0354D7235E229D0046047F /* Views */,
 				FA0354D6235E21F40046047F /* Model Controllers */,
-				FA0354D4235E1D530046047F /* Models */,
 				FA0354BF235E1D3F0046047F /* Reciept Tracker */,
 				FA0354BE235E1D3F0046047F /* Products */,
 			);
@@ -51,7 +50,7 @@
 		FA0354BE235E1D3F0046047F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA0354BD235E1D3F0046047F /* Reciept Tracker.app */,
+				FA0354BD235E1D3F0046047F /* ReceiptTracker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,13 +66,6 @@
 				FA0354CE235E1D410046047F /* Info.plist */,
 			);
 			path = "Reciept Tracker";
-			sourceTree = "<group>";
-		};
-		FA0354D4235E1D530046047F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		FA0354D5235E21DE0046047F /* View Controllers */ = {
@@ -107,9 +99,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FA0354BC235E1D3F0046047F /* Reciept Tracker */ = {
+		FA0354BC235E1D3F0046047F /* ReceiptTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA0354D1235E1D410046047F /* Build configuration list for PBXNativeTarget "Reciept Tracker" */;
+			buildConfigurationList = FA0354D1235E1D410046047F /* Build configuration list for PBXNativeTarget "ReceiptTracker" */;
 			buildPhases = (
 				FA0354B9235E1D3F0046047F /* Sources */,
 				FA0354BA235E1D3F0046047F /* Frameworks */,
@@ -119,9 +111,9 @@
 			);
 			dependencies = (
 			);
-			name = "Reciept Tracker";
+			name = ReceiptTracker;
 			productName = "Reciept Tracker";
-			productReference = FA0354BD235E1D3F0046047F /* Reciept Tracker.app */;
+			productReference = FA0354BD235E1D3F0046047F /* ReceiptTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -139,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FA0354B8235E1D3E0046047F /* Build configuration list for PBXProject "Reciept Tracker" */;
+			buildConfigurationList = FA0354B8235E1D3E0046047F /* Build configuration list for PBXProject "ReceiptTracker" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -152,7 +144,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FA0354BC235E1D3F0046047F /* Reciept Tracker */,
+				FA0354BC235E1D3F0046047F /* ReceiptTracker */,
 			);
 		};
 /* End PBXProject section */
@@ -326,8 +318,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lambdaschool.Reciept-Tracker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.ReceiptTracker;
+				PRODUCT_NAME = ReceiptTracker;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -343,8 +335,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lambdaschool.Reciept-Tracker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.ReceiptTracker;
+				PRODUCT_NAME = ReceiptTracker;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -353,7 +345,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FA0354B8235E1D3E0046047F /* Build configuration list for PBXProject "Reciept Tracker" */ = {
+		FA0354B8235E1D3E0046047F /* Build configuration list for PBXProject "ReceiptTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA0354CF235E1D410046047F /* Debug */,
@@ -362,7 +354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA0354D1235E1D410046047F /* Build configuration list for PBXNativeTarget "Reciept Tracker" */ = {
+		FA0354D1235E1D410046047F /* Build configuration list for PBXNativeTarget "ReceiptTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA0354D2235E1D410046047F /* Debug */,
