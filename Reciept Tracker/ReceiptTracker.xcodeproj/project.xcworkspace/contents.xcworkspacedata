@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Reciept Tracker.xcodeproj">
+      location = "self:/Users/gipgip/Development/Build Week 2/iOS/Reciept Tracker/ReceiptTracker.xcodeproj">
    </FileRef>
 </Workspace>
