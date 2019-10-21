@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A69EF727235E49DB005C165D /* ReceiptTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A69EF725235E49DB005C165D /* ReceiptTracker.xcdatamodeld */; };
+		A69EF72A235E5339005C165D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69EF729235E5339005C165D /* CoreDataStack.swift */; };
+		A69EF72C235E538E005C165D /* Receipt+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69EF72B235E538E005C165D /* Receipt+Convenience.swift */; };
+		A69EF72E235E56B8005C165D /* ReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69EF72D235E56B8005C165D /* ReceiptController.swift */; };
 		FA0354C1235E1D3F0046047F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354C0235E1D3F0046047F /* AppDelegate.swift */; };
 		FA0354C3235E1D3F0046047F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354C2235E1D3F0046047F /* SceneDelegate.swift */; };
 		FA0354C8235E1D3F0046047F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0354C6235E1D3F0046047F /* Main.storyboard */; };
@@ -17,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		A69EF726235E49DB005C165D /* ReceiptTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReceiptTracker.xcdatamodel; sourceTree = "<group>"; };
+		A69EF729235E5339005C165D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		A69EF72B235E538E005C165D /* Receipt+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Receipt+Convenience.swift"; sourceTree = "<group>"; };
+		A69EF72D235E56B8005C165D /* ReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptController.swift; sourceTree = "<group>"; };
 		FA0354BD235E1D3F0046047F /* ReceiptTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0354C0235E1D3F0046047F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA0354C2235E1D3F0046047F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +47,8 @@
 			isa = PBXGroup;
 			children = (
 				A69EF725235E49DB005C165D /* ReceiptTracker.xcdatamodeld */,
+				A69EF729235E5339005C165D /* CoreDataStack.swift */,
+				A69EF72B235E538E005C165D /* Receipt+Convenience.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -89,6 +97,7 @@
 		FA0354D6235E21F40046047F /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A69EF72D235E56B8005C165D /* ReceiptController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -178,9 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A69EF72E235E56B8005C165D /* ReceiptController.swift in Sources */,
 				FA0354C1235E1D3F0046047F /* AppDelegate.swift in Sources */,
 				A69EF727235E49DB005C165D /* ReceiptTracker.xcdatamodeld in Sources */,
 				FA0354C3235E1D3F0046047F /* SceneDelegate.swift in Sources */,
+				A69EF72C235E538E005C165D /* Receipt+Convenience.swift in Sources */,
+				A69EF72A235E5339005C165D /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
