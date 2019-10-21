@@ -16,11 +16,11 @@ enum HeaderNames: String {
 
 class LogInController {
 
-    var receipts: [Receipt] = []
+    //var receipts: [Receipt] = []
     
     var bearer: Bearer?
     private let loginBaseURL = URL(string: "")!
-//
+
 //    // MARK: Performing fetchAllReceipt Network call
 //
 //    func fetchAllReciepts( completion: @escaping (Result<[String], NetworkingError>) -> Void) {
@@ -31,32 +31,29 @@ class LogInController {
 //        }
 //
 //        let requestURL = loginBaseURL
-//            .appendingPathComponent("")
+//            .appendingPathComponent("reciepts")
 //
 //        var request = URLRequest(url: requestURL)
 //        request.httpMethod = HTTPMethod.get.rawValue
 //        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
 //    }
-//
+
 
     // MARK: - Sign Up  &  Log In Functions :
     
     // MARK: - Sign Up URLSessionDataTask
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         
-        // Build the URL
-        
+        // Building the URL
         let requestURL = loginBaseURL
             .appendingPathComponent("users")
             .appendingPathComponent("signup")
         
-        // Build the request
-        
+        // Building the request
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         
-        // Tell the API that the body is in JSON format
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
         
         let encoder = JSONEncoder()
         
@@ -68,7 +65,6 @@ class LogInController {
             completion(error)
         }
         
-        // Performing data task
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             // Handle errors
@@ -83,11 +79,9 @@ class LogInController {
                 let statusCodeError = NSError(domain: "com.ReceiptTracker.Receipts", code: response.statusCode, userInfo: nil)
                 completion(statusCodeError)
             }
-      
             completion(nil)
         }.resume()
     }
-    
     
     //MARK: - Log In URLSessionDataTask
     func signIn(with user: User, completion: @escaping (Error?) -> Void) {
@@ -97,7 +91,7 @@ class LogInController {
             .appendingPathComponent("login")
         
         var request = URLRequest(url: requestURL)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
         request.httpMethod = HTTPMethod.post.rawValue
         
         do {
