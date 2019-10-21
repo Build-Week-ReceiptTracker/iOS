@@ -16,6 +16,9 @@
 		FA0354C8235E1D3F0046047F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0354C6235E1D3F0046047F /* Main.storyboard */; };
 		FA0354CA235E1D410046047F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA0354C9235E1D410046047F /* Assets.xcassets */; };
 		FA0354CD235E1D410046047F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0354CB235E1D410046047F /* LaunchScreen.storyboard */; };
+		FA0354DA235E60C80046047F /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354D9235E60C80046047F /* LogInController.swift */; };
+		FA0354DC235E62B60046047F /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354DB235E62B60046047F /* Bearer.swift */; };
+		FA0354DE235E63BB0046047F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354DD235E63BB0046047F /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		FA0354C9235E1D410046047F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA0354CC235E1D410046047F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA0354CE235E1D410046047F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA0354D9235E60C80046047F /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
+		FA0354DB235E62B60046047F /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		FA0354DD235E63BB0046047F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,8 @@
 				A69EF725235E49DB005C165D /* ReceiptTracker.xcdatamodeld */,
 				A69EF729235E5339005C165D /* CoreDataStack.swift */,
 				A69EF72B235E538E005C165D /* Receipt+Convenience.swift */,
+				FA0354DB235E62B60046047F /* Bearer.swift */,
+				FA0354DD235E63BB0046047F /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -98,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				A69EF72D235E56B8005C165D /* ReceiptController.swift */,
+				FA0354D9235E60C80046047F /* LogInController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -187,9 +196,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0354DC235E62B60046047F /* Bearer.swift in Sources */,
 				A69EF72E235E56B8005C165D /* ReceiptController.swift in Sources */,
 				FA0354C1235E1D3F0046047F /* AppDelegate.swift in Sources */,
+				FA0354DA235E60C80046047F /* LogInController.swift in Sources */,
 				A69EF727235E49DB005C165D /* ReceiptTracker.xcdatamodeld in Sources */,
+				FA0354DE235E63BB0046047F /* User.swift in Sources */,
 				FA0354C3235E1D3F0046047F /* SceneDelegate.swift in Sources */,
 				A69EF72C235E538E005C165D /* Receipt+Convenience.swift in Sources */,
 				A69EF72A235E5339005C165D /* CoreDataStack.swift in Sources */,
