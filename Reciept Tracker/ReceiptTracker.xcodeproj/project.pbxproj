@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A69EF727235E49DB005C165D /* ReceiptTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A69EF725235E49DB005C165D /* ReceiptTracker.xcdatamodeld */; };
 		FA0354C1235E1D3F0046047F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354C0235E1D3F0046047F /* AppDelegate.swift */; };
 		FA0354C3235E1D3F0046047F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354C2235E1D3F0046047F /* SceneDelegate.swift */; };
 		FA0354C8235E1D3F0046047F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0354C6235E1D3F0046047F /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A69EF726235E49DB005C165D /* ReceiptTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReceiptTracker.xcdatamodel; sourceTree = "<group>"; };
 		FA0354BD235E1D3F0046047F /* ReceiptTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0354C0235E1D3F0046047F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA0354C2235E1D3F0046047F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +37,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A69EF728235E49E1005C165D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A69EF725235E49DB005C165D /* ReceiptTracker.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		FA0354B4235E1D3E0046047F = {
 			isa = PBXGroup;
 			children = (
@@ -42,6 +52,7 @@
 				FA0354D5235E21DE0046047F /* View Controllers */,
 				FA0354D7235E229D0046047F /* Views */,
 				FA0354D6235E21F40046047F /* Model Controllers */,
+				A69EF728235E49E1005C165D /* Models */,
 				FA0354BF235E1D3F0046047F /* Reciept Tracker */,
 				FA0354BE235E1D3F0046047F /* Products */,
 			);
@@ -168,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA0354C1235E1D3F0046047F /* AppDelegate.swift in Sources */,
+				A69EF727235E49DB005C165D /* ReceiptTracker.xcdatamodeld in Sources */,
 				FA0354C3235E1D3F0046047F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +378,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A69EF725235E49DB005C165D /* ReceiptTracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A69EF726235E49DB005C165D /* ReceiptTracker.xcdatamodel */,
+			);
+			currentVersion = A69EF726235E49DB005C165D /* ReceiptTracker.xcdatamodel */;
+			path = ReceiptTracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FA0354B5235E1D3E0046047F /* Project object */;
 }
