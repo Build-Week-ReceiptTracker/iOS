@@ -19,7 +19,7 @@ class LogInController {
     //var receipts: [Receipt] = []
     
     var bearer: Bearer?
-    private let loginBaseURL = URL(string: "")!
+    private let loginBaseURL = URL(string: "https://api-receipt-tracker.herokuapp.com/api")!
 
 //    // MARK: Performing fetchAllReceipt Network call
 //
@@ -46,8 +46,8 @@ class LogInController {
         
         // Building the URL
         let requestURL = loginBaseURL
-            .appendingPathComponent("users")
-            .appendingPathComponent("signup")
+            .appendingPathComponent("register")
+           // .appendingPathComponent("register")
         
         // Building the request
         var request = URLRequest(url: requestURL)
@@ -84,11 +84,11 @@ class LogInController {
     }
     
     //MARK: - Log In URLSessionDataTask
-    func signIn(with user: User, completion: @escaping (Error?) -> Void) {
+    func logIn(with user: User, completion: @escaping (Error?) -> Void) {
         
         let requestURL = loginBaseURL
-            .appendingPathComponent("users")
             .appendingPathComponent("login")
+           // .appendingPathComponent("login")
         
         var request = URLRequest(url: requestURL)
         request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
@@ -129,7 +129,6 @@ class LogInController {
                 NSLog("Error decoding the bearer token: \(error)")
                 completion(error)
             }
-            
             completion(nil)
         }.resume()
     }
