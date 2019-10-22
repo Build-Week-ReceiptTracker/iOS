@@ -13,6 +13,7 @@ class ReceiptLogInViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var logInSegmentedControl: UISegmentedControl!
     @IBOutlet weak var logInButton: UIButton!
@@ -44,10 +45,12 @@ class ReceiptLogInViewController: UIViewController {
         // Create a user
         guard let username = usernameTextField.text,
             let password = passwordTextField.text,
-            username != "",
-            !password.isEmpty else { return }
+            let email = emailTextField.text,
+            !username.isEmpty,
+            !password.isEmpty,
+            !email.isEmpty else { return }
         
-        let user = User(username: username, password: password)
+        let user = User(username: username, password: password, email: email)
         
         // perform login or sign up operation based on loginType
         if loginType == .signUp {
@@ -87,7 +90,7 @@ class ReceiptLogInViewController: UIViewController {
     }
     
     func logIn(with user: User) {
-        logInController?.signIn(with: user, completion: { (error) in
+        logInController?.logIn(with: user, completion: { (error) in
             if let error = error {
                 NSLog("Error occurred during sign in: \(error)")
             } else {
