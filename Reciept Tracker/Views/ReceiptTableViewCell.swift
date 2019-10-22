@@ -37,7 +37,7 @@ class ReceiptTableViewCell: UITableViewCell {
             merchantLabel.text = formatter.string(from: receipt.date!)
         }
         
-        priceLabel.text = currencyFormatter.string(for: receipt.price)
+        priceLabel.text = currencyFormatter.string(for: receipt.amount)
         
     }
 }
