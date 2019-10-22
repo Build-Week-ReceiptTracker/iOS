@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5cz-2N-dET">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -10,14 +10,66 @@
         <!--History-->
         <scene sceneID="neN-JU-cLJ">
             <objects>
-                <tableViewController id="Bk1-7K-fIe" sceneMemberID="viewController">
+                <tableViewController id="Bk1-7K-fIe" customClass="ReceiptsTableViewController" customModule="ReceiptTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vz4-I3-ri5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="frV-Xb-6fp">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xs1-Uw-YvZ">
+                                    <rect key="frame" x="4" y="4" width="406" height="59"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31V-eB-8hq">
+                                            <rect key="frame" x="0.0" y="19.5" width="61.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="6AH-Ce-OjX">
+                                            <rect key="frame" x="71.5" y="0.0" width="334.5" height="59"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mXh-tp-zjj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="334.5" height="32"/>
+                                                    <segments>
+                                                        <segment title="Merchant"/>
+                                                        <segment title="Amount"/>
+                                                        <segment title="Date"/>
+                                                        <segment title="Category"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="sortTypeValueChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="LeS-5r-fic"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WQO-VA-qyo">
+                                                    <rect key="frame" x="0.0" y="37" width="334.5" height="23"/>
+                                                    <segments>
+                                                        <segment title="Ascending"/>
+                                                        <segment title="Descending"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="sortOptionValueChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="szL-aj-94c"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="xs1-Uw-YvZ" secondAttribute="trailing" constant="4" id="BS7-1D-pNE"/>
+                                <constraint firstItem="xs1-Uw-YvZ" firstAttribute="centerY" secondItem="frV-Xb-6fp" secondAttribute="centerY" id="CRf-Di-LCW"/>
+                                <constraint firstAttribute="bottom" secondItem="xs1-Uw-YvZ" secondAttribute="bottom" constant="4" id="cbW-lL-G1z"/>
+                                <constraint firstItem="xs1-Uw-YvZ" firstAttribute="top" secondItem="frV-Xb-6fp" secondAttribute="top" constant="4" id="tda-mr-zxF"/>
+                                <constraint firstItem="xs1-Uw-YvZ" firstAttribute="leading" secondItem="frV-Xb-6fp" secondAttribute="leading" constant="4" id="yvr-du-da7"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="QvN-zj-Nci" detailTextLabel="SeE-2S-4gc" style="IBUITableViewCellStyleValue1" id="kGw-Cn-j27">
-                                <rect key="frame" x="0.0" y="28" width="414" height="47.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceiptCell" textLabel="QvN-zj-Nci" detailTextLabel="SeE-2S-4gc" style="IBUITableViewCellStyleValue1" id="kGw-Cn-j27" customClass="ReceiptTableViewCell" customModule="ReceiptTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="95" width="414" height="47.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kGw-Cn-j27" id="enm-g8-oBG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="47.5"/>
@@ -39,7 +91,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="ReceiptCell"/>
                                 <connections>
+                                    <outlet property="merchantLabel" destination="QvN-zj-Nci" id="Vw5-Je-izk"/>
+                                    <outlet property="priceLabel" destination="SeE-2S-4gc" id="eSO-0h-X6b"/>
                                     <segue destination="Ydg-ei-wDN" kind="show" identifier="ShowDetailsSegue" id="KoB-Jh-cEE"/>
                                 </connections>
                             </tableViewCell>
@@ -63,6 +118,8 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="sortingOptionSegmentedControl" destination="WQO-VA-qyo" id="6nc-tP-hOm"/>
+                        <outlet property="sortingTypeSegmentedControl" destination="mXh-tp-zjj" id="LYb-nH-NVo"/>
                         <segue destination="Mhs-gW-Ga2" kind="presentation" identifier="LoginSegue" id="4oT-Q4-LVP"/>
                     </connections>
                 </tableViewController>
@@ -73,7 +130,7 @@
         <!--Details-->
         <scene sceneID="bT3-tq-X8c">
             <objects>
-                <viewController id="Ydg-ei-wDN" sceneMemberID="viewController">
+                <viewController id="Ydg-ei-wDN" customClass="ReceiptDetailViewController" customModule="ReceiptTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XDz-5W-j80">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,38 +155,38 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfF-3u-l5m">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ks-Ld-A0J">
                                         <rect key="frame" x="0.0" y="88" width="334" height="24"/>
                                         <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00/00/0000" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcd-Qg-Xyb">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$00,000" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UMK-c2-re4">
                                         <rect key="frame" x="0.0" y="127" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhf-IL-lQx">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfF-3u-l5m">
                                         <rect key="frame" x="0.0" y="176" width="334" height="24"/>
                                         <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AGC-4m-HIu">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00/00/0000" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcd-Qg-Xyb">
                                         <rect key="frame" x="0.0" y="215" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ks-Ld-A0J">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhf-IL-lQx">
                                         <rect key="frame" x="0.0" y="264" width="334" height="24"/>
                                         <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$00,000" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UMK-c2-re4">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AGC-4m-HIu">
                                         <rect key="frame" x="0.0" y="303" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -155,21 +212,36 @@
                         <viewLayoutGuide key="safeArea" id="i9Y-mI-Hsr"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Delete" id="IYQ-xF-XBI"/>
+                        <barButtonItem title="Delete" id="IYQ-xF-XBI">
+                            <connections>
+                                <action selector="deleteButtonTapped:" destination="Ydg-ei-wDN" id="Kwy-Rj-vOX"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Details" id="3lH-vT-1YQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="u91-Jn-zE8"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="u91-Jn-zE8">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Ydg-ei-wDN" id="ne8-Pf-aP3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="amountTextField" destination="UMK-c2-re4" id="9QP-Q7-EwT"/>
+                        <outlet property="categoryTextField" destination="AGC-4m-HIu" id="m9R-Vd-zsa"/>
+                        <outlet property="dateTextField" destination="bcd-Qg-Xyb" id="E90-d0-mO6"/>
+                        <outlet property="nameTextField" destination="VBe-9V-L92" id="7qv-2s-row"/>
+                        <outlet property="pictureImageView" destination="3Li-K3-tiK" id="q3g-8U-9yG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vm-C9-eth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1747.826086956522" y="-5.3571428571428568"/>
         </scene>
-        <!--View Controller-->
+        <!--Receipt Log In View Controller-->
         <scene sceneID="4Te-ew-Oqy">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Mhs-gW-Ga2" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Mhs-gW-Ga2" customClass="ReceiptLogInViewController" customModule="ReceiptTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gsz-7v-FPg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,7 +269,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P51-Xm-CIs">
                                         <rect key="frame" x="37" y="88" width="300" height="34"/>
-                                        <color key="backgroundColor" red="0.17356307756317366" green="0.78053252045538157" blue="0.90817338197969544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="YVg-R5-OGh"/>
                                             <constraint firstAttribute="width" constant="300" id="yCl-cI-pUS"/>
@@ -205,6 +277,9 @@
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logInButtonTapped:" destination="Mhs-gW-Ga2" eventType="touchUpInside" id="rjQ-cW-hRU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -217,6 +292,9 @@
                                     <segment title="Sing up"/>
                                     <segment title="Log In"/>
                                 </segments>
+                                <connections>
+                                    <action selector="logInSegmentedControlChanged:" destination="Mhs-gW-Ga2" eventType="valueChanged" id="kke-is-aaI"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -230,6 +308,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BCb-qM-BZJ"/>
                     </view>
+                    <connections>
+                        <outlet property="logInButton" destination="P51-Xm-CIs" id="yfS-oA-URr"/>
+                        <outlet property="logInSegmentedControl" destination="obz-Q9-pV7" id="B65-Ka-w1b"/>
+                        <outlet property="passwordTextField" destination="N1n-Vc-Kwx" id="edi-fU-KG5"/>
+                        <outlet property="usernameTextField" destination="31Q-Rm-9Ux" id="its-v8-BIe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2L-s6-ht8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
