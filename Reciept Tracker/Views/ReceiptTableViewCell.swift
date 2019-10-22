@@ -9,16 +9,35 @@
 import UIKit
 
 class ReceiptTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBOutlet weak var merchantLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    var sortType: SortingType?
+    var receipt: Receipt? {
+        didSet {
+            updateViews()
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func updateViews() {
+        guard let receipt = receipt, let sortType = sortType else { return }
+        
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.current
+        
+        if sortType != .merchant {
+            merchantLabel.text = receipt.merchant
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yy"
+            
+            merchantLabel.text = formatter.string(from: receipt.date!)
+        }
+        
+        priceLabel.text = currencyFormatter.string(for: receipt.price)
+        
     }
-
 }

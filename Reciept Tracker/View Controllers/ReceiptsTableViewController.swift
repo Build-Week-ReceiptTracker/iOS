@@ -93,6 +93,7 @@ class ReceiptsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as? ReceiptTableViewCell else { return UITableViewCell() }
 
         cell.receipt = fetchedResultsController.object(at: indexPath)
+        cell.sortType = sortType
         
         return cell
     }

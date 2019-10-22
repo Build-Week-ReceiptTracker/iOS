@@ -93,6 +93,8 @@
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="ReceiptCell"/>
                                 <connections>
+                                    <outlet property="merchantLabel" destination="QvN-zj-Nci" id="Vw5-Je-izk"/>
+                                    <outlet property="priceLabel" destination="SeE-2S-4gc" id="eSO-0h-X6b"/>
                                     <segue destination="Ydg-ei-wDN" kind="show" identifier="ShowDetailsSegue" id="KoB-Jh-cEE"/>
                                 </connections>
                             </tableViewCell>
