@@ -155,10 +155,18 @@
                         <viewLayoutGuide key="safeArea" id="i9Y-mI-Hsr"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Delete" id="IYQ-xF-XBI"/>
+                        <barButtonItem title="Delete" id="IYQ-xF-XBI">
+                            <connections>
+                                <action selector="deleteButtonTapped:" destination="Ydg-ei-wDN" id="Kwy-Rj-vOX"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Details" id="3lH-vT-1YQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="u91-Jn-zE8"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="u91-Jn-zE8">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Ydg-ei-wDN" id="ne8-Pf-aP3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
