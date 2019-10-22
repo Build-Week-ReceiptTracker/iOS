@@ -205,6 +205,9 @@
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logInButtonTapped:" destination="Mhs-gW-Ga2" eventType="touchUpInside" id="rjQ-cW-hRU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -217,6 +220,9 @@
                                     <segment title="Sing up"/>
                                     <segment title="Log In"/>
                                 </segments>
+                                <connections>
+                                    <action selector="logInSegmentedControlChanged:" destination="Mhs-gW-Ga2" eventType="valueChanged" id="kke-is-aaI"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -230,6 +236,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BCb-qM-BZJ"/>
                     </view>
+                    <connections>
+                        <outlet property="logInButton" destination="P51-Xm-CIs" id="yfS-oA-URr"/>
+                        <outlet property="logInSegmentedControl" destination="obz-Q9-pV7" id="B65-Ka-w1b"/>
+                        <outlet property="passwordTextField" destination="N1n-Vc-Kwx" id="edi-fU-KG5"/>
+                        <outlet property="usernameTextField" destination="31Q-Rm-9Ux" id="its-v8-BIe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2L-s6-ht8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
