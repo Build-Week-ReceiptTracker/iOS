@@ -9,6 +9,14 @@
 import UIKit
 
 class ReceiptDetailViewController: UIViewController {
+    
+    //MARK: Outlets
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var pictureImageView: UIImageView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

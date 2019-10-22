@@ -161,6 +161,13 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="u91-Jn-zE8"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="amountTextField" destination="UMK-c2-re4" id="9QP-Q7-EwT"/>
+                        <outlet property="categoryTextField" destination="AGC-4m-HIu" id="m9R-Vd-zsa"/>
+                        <outlet property="dateTextField" destination="bcd-Qg-Xyb" id="E90-d0-mO6"/>
+                        <outlet property="nameTextField" destination="VBe-9V-L92" id="7qv-2s-row"/>
+                        <outlet property="pictureImageView" destination="3Li-K3-tiK" id="q3g-8U-9yG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vm-C9-eth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
