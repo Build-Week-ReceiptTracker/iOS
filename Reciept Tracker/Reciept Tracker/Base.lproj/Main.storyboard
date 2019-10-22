@@ -247,7 +247,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LjA-rU-7iD">
-                                <rect key="frame" x="20" y="135" width="374" height="122"/>
+                                <rect key="frame" x="20" y="135" width="374" height="166"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31Q-Rm-9Ux">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -258,8 +258,17 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1n-Vc-Kwx">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8f-nd-HgF">
                                         <rect key="frame" x="0.0" y="44" width="374" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="374" id="7UF-qP-V4Z"/>
+                                            <constraint firstAttribute="height" constant="34" id="Cnq-p5-SjI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1n-Vc-Kwx">
+                                        <rect key="frame" x="0.0" y="88" width="374" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="JJN-St-aCo"/>
                                             <constraint firstAttribute="width" constant="374" id="L5q-Y0-yKO"/>
@@ -268,7 +277,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P51-Xm-CIs">
-                                        <rect key="frame" x="37" y="88" width="300" height="34"/>
+                                        <rect key="frame" x="37" y="132" width="300" height="34"/>
                                         <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="YVg-R5-OGh"/>
@@ -309,6 +318,7 @@
                         <viewLayoutGuide key="safeArea" id="BCb-qM-BZJ"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="o8f-nd-HgF" id="1AC-GW-gaL"/>
                         <outlet property="logInButton" destination="P51-Xm-CIs" id="yfS-oA-URr"/>
                         <outlet property="logInSegmentedControl" destination="obz-Q9-pV7" id="B65-Ka-w1b"/>
                         <outlet property="passwordTextField" destination="N1n-Vc-Kwx" id="edi-fU-KG5"/>
