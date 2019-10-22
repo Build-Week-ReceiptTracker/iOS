@@ -23,6 +23,7 @@
 		FA0354E2235E79D60046047F /* ReceiptsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E1235E79D60046047F /* ReceiptsTableViewController.swift */; };
 		FA0354E4235E79FC0046047F /* ReceiptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E3235E79FC0046047F /* ReceiptDetailViewController.swift */; };
 		FA0354E8235E7BAA0046047F /* ReceiptLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E7235E7BAA0046047F /* ReceiptLogInViewController.swift */; };
+		FA0354EA235F63EF0046047F /* ReceiptRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E9235F63EF0046047F /* ReceiptRepresentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		FA0354E1235E79D60046047F /* ReceiptsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsTableViewController.swift; sourceTree = "<group>"; };
 		FA0354E3235E79FC0046047F /* ReceiptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailViewController.swift; sourceTree = "<group>"; };
 		FA0354E7235E7BAA0046047F /* ReceiptLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptLogInViewController.swift; sourceTree = "<group>"; };
+		FA0354E9235F63EF0046047F /* ReceiptRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptRepresentation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				A69EF725235E49DB005C165D /* ReceiptTracker.xcdatamodeld */,
-				A69EF729235E5339005C165D /* CoreDataStack.swift */,
+				FA0354E9235F63EF0046047F /* ReceiptRepresentation.swift */,
 				A69EF72B235E538E005C165D /* Receipt+Convenience.swift */,
+				A69EF729235E5339005C165D /* CoreDataStack.swift */,
 				FA0354DB235E62B60046047F /* Bearer.swift */,
 				FA0354DD235E63BB0046047F /* User.swift */,
 			);
@@ -221,6 +224,7 @@
 				A69EF72C235E538E005C165D /* Receipt+Convenience.swift in Sources */,
 				FA0354E4235E79FC0046047F /* ReceiptDetailViewController.swift in Sources */,
 				A69EF72A235E5339005C165D /* CoreDataStack.swift in Sources */,
+				FA0354EA235F63EF0046047F /* ReceiptRepresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
