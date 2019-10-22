@@ -45,9 +45,7 @@ class LogInController {
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         
         // Building the URL
-        let requestURL = loginBaseURL
-            .appendingPathComponent("register")
-           // .appendingPathComponent("register")
+        let requestURL = loginBaseURL.appendingPathComponent("register")
         
         // Building the request
         var request = URLRequest(url: requestURL)
@@ -63,6 +61,7 @@ class LogInController {
         } catch {
             NSLog("Error encoding user object: \(error)")
             completion(error)
+            return
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -71,13 +70,15 @@ class LogInController {
             if let error = error {
                 NSLog("Error signing up user: \(error)")
                 completion(error)
+                return
             }
             
             if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
+                response.statusCode != 200, response.statusCode != 201 {
                 
                 let statusCodeError = NSError(domain: "com.ReceiptTracker.Receipts", code: response.statusCode, userInfo: nil)
                 completion(statusCodeError)
+                return
             }
             completion(nil)
         }.resume()
@@ -86,9 +87,7 @@ class LogInController {
     //MARK: - Log In URLSessionDataTask
     func logIn(with user: User, completion: @escaping (Error?) -> Void) {
         
-        let requestURL = loginBaseURL
-            .appendingPathComponent("login")
-           // .appendingPathComponent("login")
+        let requestURL = loginBaseURL.appendingPathComponent("login")
         
         var request = URLRequest(url: requestURL)
         request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
@@ -99,6 +98,7 @@ class LogInController {
         } catch {
             NSLog("Error encoding user for sign in: \(error)")
             completion(error)
+            return
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -114,6 +114,7 @@ class LogInController {
                 
                 let statusCodeError = NSError(domain: "com.ReceiptTracker.Receipts", code: response.statusCode, userInfo: nil)
                 completion(statusCodeError)
+                return
             }
             
             guard let data = data else {
@@ -128,6 +129,7 @@ class LogInController {
             } catch {
                 NSLog("Error decoding the bearer token: \(error)")
                 completion(error)
+                return
             }
             completion(nil)
         }.resume()
