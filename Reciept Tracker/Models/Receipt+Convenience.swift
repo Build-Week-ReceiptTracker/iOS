@@ -20,6 +20,10 @@ extension Receipt {
         return ReceiptRepresentation(id: id, dateOfTransaction: date, amountSpent: amount, category: category, merchant: merchant, imageURL: imageURL, description: receiptDescription)
     }
     
+//    var postReceiptRepresentation: PostReceiptRepresentation {
+//        return PostReceiptRepresentation(dateOfTransaction: date, amountSpent: amount, category: category, merchant: merchant, imageURL: imageURL, userUsername: , description: <#T##String?#>)
+//    }
+    
     @discardableResult convenience init(date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, id: Int16, context: NSManagedObjectContext) {
         self.init(context: context)
         self.date = date

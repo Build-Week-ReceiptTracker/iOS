@@ -125,6 +125,16 @@ class ReceiptsTableViewController: UITableViewController {
                 loginVC.logInController = logInController
                 loginVC.receiptController = receiptController
             }
+        } else if segue.identifier == "AddReceiptSegue" {
+            if let detailVC = segue.destination as? ReceiptDetailViewController {
+                detailVC.receiptController = receiptController
+            }
+        } else if segue.identifier == "ShowDetailsSegue" {
+            if let detailVC = segue.destination as? ReceiptDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
+                detailVC.receiptController = receiptController
+                detailVC.receipt = fetchedResultsController.object(at: indexPath)
+            }
         }
     }
     

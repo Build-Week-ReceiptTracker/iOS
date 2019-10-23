@@ -31,8 +31,8 @@ class ReceiptController {
     // MARK: - Properties
     private let baseURL = URL(string: "https://api-receipt-tracker.herokuapp.com/api")!
     
-    var coreDataStack: CoreDataStack?
     var bearer: Bearer?
+    var receiptID: Int16?
     
     init() {
         fetchReceiptsFromServer()
@@ -62,6 +62,7 @@ class ReceiptController {
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
+                NSLog("Unexpected status code: \(response.statusCode)")
                 completion(.unexpectedStatusCode(response.statusCode))
                 return
             }
@@ -111,7 +112,7 @@ class ReceiptController {
         request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
 
         
-        guard let receiptRepresentation = receipt.receiptRepresentation else {
+        guard var receiptRepresentation = receipt.receiptRepresentation else {
             NSLog("Receipt Representation is nil")
             completion(.noRepresentation)
             return
@@ -137,6 +138,7 @@ class ReceiptController {
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 201 {
+                NSLog("Unexpected status code: \(response.statusCode)")
                 completion(.unexpectedStatusCode(response.statusCode))
                 return
             }
@@ -148,14 +150,16 @@ class ReceiptController {
             }
             
             do {
-                let receiptID = try JSONDecoder().decode(ReceiptID.self, from: data)
-                receiptRepresentation.id = receiptID.receiptID
+                let id = try JSONDecoder().decode(ReceiptID.self, from: data)
+                self.receiptID = id.receiptID
+                completion(nil)
             } catch {
-                
+                NSLog("Could not decode receipt ID: \(error)")
+                completion(.badDecode)
             }
-            
-            completion(nil)
+
         }.resume()
+
     }
     
     
@@ -249,16 +253,19 @@ class ReceiptController {
     
     
     // MARK: - Core Data CRUD Methods
-    func createReceipt(date: Date, price: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, id: Int16, context: NSManagedObjectContext) {
+    func createReceipt(date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
         
-        let receipt = Receipt(date: date, amount: price, category: category, merchant: merchant, receiptDescription: receiptDescription, imageURL: imageURL, id: id, context: context)
-        
-        addNewReceiptToServer(receipt: receipt) { (error) in
-            if error == nil {
+        let receipt = Receipt(date: date, amount: amount, category: category, merchant: merchant, receiptDescription: receiptDescription, imageURL: imageURL, context: context)
+
+        addNewReceiptToServer(receipt: receipt, completion: { (error) in
+            if let id =  self.receiptID{
+                receipt.id = id
+                print(id)
                 CoreDataStack.shared.save(context: context)
             }
-        }
+        })
     }
+
     
     func updateReceipt(receipt: Receipt, date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
         
