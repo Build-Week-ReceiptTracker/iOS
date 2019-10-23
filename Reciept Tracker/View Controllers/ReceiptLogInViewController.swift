@@ -20,6 +20,7 @@ class ReceiptLogInViewController: UIViewController {
     
     //MARK: Properties
     var logInController: LogInController!
+    var receiptController: ReceiptController!
     var loginType = LoginType.signUp
     
     override func viewDidLoad() {
@@ -99,6 +100,7 @@ class ReceiptLogInViewController: UIViewController {
                 NSLog("Error occurred during sign in: \(error)")
             } else {
                 DispatchQueue.main.async {
+                    self.receiptController.bearer = self.logInController.bearer
                     self.dismiss(animated: true, completion: nil)
                 }
             }
