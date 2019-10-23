@@ -33,9 +33,14 @@ class ReceiptLogInViewController: UIViewController {
         if sender.selectedSegmentIndex == 0 {
             loginType = .signUp
             logInButton.setTitle("Sign Up", for: .normal)
+            emailTextField.isUserInteractionEnabled = true
+            emailTextField.alpha = 1
         } else {
             loginType = .logIn
             logInButton.setTitle("Log In", for: .normal)
+            emailTextField.text = ""
+            emailTextField.isUserInteractionEnabled = false
+            emailTextField.alpha = 0
         }
     }
     
@@ -45,17 +50,16 @@ class ReceiptLogInViewController: UIViewController {
         // Create a user
         guard let username = usernameTextField.text,
             let password = passwordTextField.text,
-            let email = emailTextField.text,
             !username.isEmpty,
-            !password.isEmpty,
-            !email.isEmpty else { return }
-        
-        let user = User(username: username, password: password, email: email)
+            !password.isEmpty else { return }
         
         // perform login or sign up operation based on loginType
         if loginType == .signUp {
+            guard let email = emailTextField.text, !email.isEmpty else { return }
+            let user = User(username: username, email: email, password: password)
             signUp(with: user)
         } else {
+            let user = User(username: username, email: nil, password: password)
             logIn(with: user)
         }
     }
@@ -63,12 +67,9 @@ class ReceiptLogInViewController: UIViewController {
     //MARK: LogIn/SignUp functions
     
     func signUp(with user: User) {
-        
-        logInController?.signUp(with: user, completion: { (error) in
+        logInController.signUp(with: user) { (error) in
             if let error = error {
-                
                 NSLog("Error occurred during sign up: \(error)")
-                
             } else {
                 let alert = UIAlertController(title: "Sign Up Successful",
                                               message: "Now please log in",
@@ -83,14 +84,17 @@ class ReceiptLogInViewController: UIViewController {
                         self.loginType = .logIn
                         self.logInSegmentedControl.selectedSegmentIndex = 1
                         self.logInButton.setTitle("Log In", for: .normal)
+                        self.emailTextField.text = ""
+                        self.emailTextField.isUserInteractionEnabled = false
+                        self.emailTextField.alpha = 0
                     }
                 }
             }
-        })
+        }
     }
     
     func logIn(with user: User) {
-        logInController?.logIn(with: user, completion: { (error) in
+        logInController.logIn(with: user) { (error) in
             if let error = error {
                 NSLog("Error occurred during sign in: \(error)")
             } else {
@@ -98,18 +102,8 @@ class ReceiptLogInViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             }
-        })
+        }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
