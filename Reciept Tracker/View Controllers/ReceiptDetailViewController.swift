@@ -19,6 +19,7 @@ class ReceiptDetailViewController: UIViewController {
     
     var receipt: Receipt?
     var receiptController: ReceiptController?
+    let dateFormatter = DateFormatter()
     
 
     override func viewDidLoad() {
@@ -33,6 +34,7 @@ class ReceiptDetailViewController: UIViewController {
         if receipt == nil {
             guard let merchant = nameTextField.text,
                 let date = dateTextField.text,
+                let dateFormatted = dateFormatter.date(from: date),
                 let category = categoryTextField.text,
                 let amount = amountTextField.text,
                 let imageURL = pictureImageView,
@@ -41,6 +43,10 @@ class ReceiptDetailViewController: UIViewController {
                 !category.isEmpty else { return }
             
             //TODO: Call method(s) to create new receipt
+            
+            
+            let newReceipt = Receipt(date: dateFormatted, amount: amount as! Double, category: category, merchant: merchant, receiptDescription: nil, imageURL: nil, context: CoreDataStack.shared.mainContext)
+            receiptController?.addNewReceiptToServer(receipt: newReceipt)
             
         } else { return }
     }
@@ -69,7 +75,7 @@ class ReceiptDetailViewController: UIViewController {
     
     func updateViews() {
         
-        let dateFormatter = DateFormatter()
+        
         
         guard let receipt = receipt,
             let date = receipt.date,
@@ -79,6 +85,12 @@ class ReceiptDetailViewController: UIViewController {
                 dateTextField.isEnabled = true
                 categoryTextField.isEnabled = true
                 amountTextField.isEnabled = true
+                
+                nameTextField.text = ""
+                dateTextField.text = ""
+                categoryTextField.text = ""
+                amountTextField.text = ""
+                
                 return
         }
         

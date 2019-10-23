@@ -33,6 +33,19 @@ extension Receipt {
         self.id = id
     }
     
+    // Initializer without id
+    @discardableResult convenience init(date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
+           self.init(context: context)
+           self.date = date
+           self.amount = amount
+           self.category = category
+           self.merchant = merchant
+           self.receiptDescription = receiptDescription
+           self.imageURL = imageURL
+       }
+    
+    
+    
     @discardableResult convenience init?(receiptRepresentation: ReceiptRepresentation, context: NSManagedObjectContext) {
               
         self.init(date: receiptRepresentation.date,
