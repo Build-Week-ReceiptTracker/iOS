@@ -20,11 +20,14 @@ class ReceiptDetailViewController: UIViewController {
     var receipt: Receipt?
     var receiptController: ReceiptController?
     let dateFormatter = DateFormatter()
+    let imagePicker = UIImagePickerController()
+    var jpegImage: String = ""
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+          imagePicker.delegate = self
     }
     
     //MARK: Actions
@@ -49,6 +52,16 @@ class ReceiptDetailViewController: UIViewController {
             receiptController?.addNewReceiptToServer(receipt: newReceipt)
             
         } else { return }
+    }
+    
+    // Adding Image with Image Picker
+    @IBAction func addImageButtonTapped(_ sender: UIButton) {
+        
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+        
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIBarButtonItem) {
@@ -122,4 +135,30 @@ class ReceiptDetailViewController: UIViewController {
 //            navigationController?.popToRootViewController(animated: true)
 //        }
     
+}
+
+extension ReceiptDetailViewController: UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            pictureImageView.contentMode = .scaleAspectFit
+            pictureImageView.image = pickedImage
+            
+            
+            // Encoding the image to jpegData
+            let jpegCompressionQuality: CGFloat = 0.9
+            
+            if let jpegImage = pickedImage.jpegData(compressionQuality: jpegCompressionQuality)?.base64EncodedString() {
+                self.jpegImage = jpegImage
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // If Choose to cancel selecting Image from picker
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
