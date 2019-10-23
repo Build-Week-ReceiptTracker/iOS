@@ -195,19 +195,36 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Li-K3-tiK">
-                                <rect key="frame" x="40" y="512" width="334" height="334"/>
+                                <rect key="frame" x="40" y="562" width="334" height="334"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3Li-K3-tiK" secondAttribute="height" multiplier="1:1" id="ysg-io-AcT"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37C-eb-Kz3">
+                                <rect key="frame" x="40" y="512" width="334" height="30"/>
+                                <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4gv-4f-CxC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Add Receipt Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addImageButtonTapped:" destination="Ydg-ei-wDN" eventType="touchUpInside" id="qb8-b6-H3b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="37C-eb-Kz3" firstAttribute="top" secondItem="NQl-RM-ugx" secondAttribute="bottom" constant="20" id="0gm-XT-6zn"/>
                             <constraint firstItem="3Li-K3-tiK" firstAttribute="leading" secondItem="i9Y-mI-Hsr" secondAttribute="leading" constant="40" id="EMr-Rs-Z9v"/>
                             <constraint firstItem="i9Y-mI-Hsr" firstAttribute="trailing" secondItem="NQl-RM-ugx" secondAttribute="trailing" constant="40" id="Hfb-n9-cHC"/>
                             <constraint firstItem="i9Y-mI-Hsr" firstAttribute="trailing" secondItem="3Li-K3-tiK" secondAttribute="trailing" constant="40" id="JAf-qd-vBO"/>
+                            <constraint firstItem="3Li-K3-tiK" firstAttribute="top" secondItem="37C-eb-Kz3" secondAttribute="bottom" constant="20" id="Mih-qH-CQl"/>
                             <constraint firstItem="NQl-RM-ugx" firstAttribute="top" secondItem="i9Y-mI-Hsr" secondAttribute="top" constant="15" id="RhZ-AM-Vea"/>
-                            <constraint firstItem="3Li-K3-tiK" firstAttribute="top" secondItem="NQl-RM-ugx" secondAttribute="bottom" constant="20" id="aBQ-vt-dRR"/>
+                            <constraint firstItem="37C-eb-Kz3" firstAttribute="leading" secondItem="NQl-RM-ugx" secondAttribute="leading" id="WLi-dn-4yT"/>
+                            <constraint firstItem="37C-eb-Kz3" firstAttribute="trailing" secondItem="NQl-RM-ugx" secondAttribute="trailing" id="g4i-h1-cNc"/>
                             <constraint firstItem="NQl-RM-ugx" firstAttribute="leading" secondItem="i9Y-mI-Hsr" secondAttribute="leading" constant="40" id="gqd-4t-XLT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i9Y-mI-Hsr"/>
