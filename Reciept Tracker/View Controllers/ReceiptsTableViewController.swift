@@ -123,6 +123,7 @@ class ReceiptsTableViewController: UITableViewController {
         if segue.identifier == "LoginSegue" {
             if let loginVC = segue.destination as? ReceiptLogInViewController {
                 loginVC.logInController = logInController
+                loginVC.receiptController = receiptController
             }
         }
     }

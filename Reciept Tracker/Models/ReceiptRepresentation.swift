@@ -10,12 +10,18 @@ import Foundation
 //import UIKit
 
 struct ReceiptRepresentation: Codable {
-    let date: Date
-    let amount: Double
+    var id: Int16
+    let dateOfTransaction: Date
+    let amountSpent: Double
     let category: String
     let merchant: String
-    let receiptDescription: String
-    let imageURL: String
-    let id: Int16
+    let imageURL: String?
+    let description: String?
+    
+    // TODO: match the name to the backend name
+    
+}
 
+struct ReceiptID: Codable {
+    let receiptID: Int16
 }

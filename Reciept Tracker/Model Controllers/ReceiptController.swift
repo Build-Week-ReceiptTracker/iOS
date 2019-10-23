@@ -33,11 +33,62 @@ class ReceiptController {
     
     var coreDataStack: CoreDataStack?
     var bearer: Bearer?
+    
+    init() {
+        fetchReceiptsFromServer()
+    }
+    
+    
+    // Fetch from server
+    func fetchReceiptsFromServer(completion: @escaping (NetworkingError?) -> Void = { _ in }) {
+        guard let bearer = bearer else { return }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("auth")
+            .appendingPathComponent("receipts")
+            .appendingPathComponent("all")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let error = error {
+                NSLog("Error fetching receipts: \(error)")
+                completion(.serverError(error))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.unexpectedStatusCode(response.statusCode))
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from receipt fetch data task")
+                completion(.noData)
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let receipts = try decoder.decode([ReceiptRepresentation].self, from: data)
+                self.updateReceipts(with: receipts)
+            } catch {
+                NSLog("Error decoding ReceiptRepresentation: \(error)")
+                completion(.badDecode)
+            }
+            completion(nil)
+        }.resume()
+    }
+    
+    
+    
     //MARK: Back-End CRUD Methods
-    
-    
-    //CREATE NEW
-    //MARK: PUT Tasks to Firebase
+    //MARK: PUT
     
     func addNewReceiptToServer(receipt: Receipt, completion: @escaping (NetworkingError?) -> Void = { _ in }) {
         
@@ -57,6 +108,8 @@ class ReceiptController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
+
         
         guard let receiptRepresentation = receipt.receiptRepresentation else {
             NSLog("Receipt Representation is nil")
@@ -64,20 +117,41 @@ class ReceiptController {
             return
         }
         
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        
         do {
-            request.httpBody = try JSONEncoder().encode(receiptRepresentation)
+            request.httpBody = try encoder.encode(receiptRepresentation)
         } catch {
             NSLog("Error encoding receipt representation: \(error)")
             completion(.badEncode)
             return
         }
         
-        URLSession.shared.dataTask(with: request) { (_, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let error = error {
                 NSLog("Error PUTting receipt: \(error)")
                 completion(.serverError(error))
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 201 {
+                completion(.unexpectedStatusCode(response.statusCode))
                 return
+            }
+            
+            guard let data = data else {
+                NSLog("No id returned after adding a new receipt")
+                completion(.noData)
+                return
+            }
+            
+            do {
+                let receiptID = try JSONDecoder().decode(ReceiptID.self, from: data)
+                receiptRepresentation.id = receiptID.receiptID
+            } catch {
+                
             }
             
             completion(nil)
