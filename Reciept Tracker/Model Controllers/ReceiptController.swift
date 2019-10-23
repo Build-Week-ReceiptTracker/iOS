@@ -31,7 +31,7 @@ class ReceiptController {
     private let baseURL = URL(string: "https://api-receipt-tracker.herokuapp.com/api")!
     
     var coreDataStack: CoreDataStack?
-    
+    var bearer: Bearer?
     //MARK: Back-End CRUD Methods
     
     
@@ -40,15 +40,24 @@ class ReceiptController {
       
       func addNewReceiptToServer(receipt: Receipt, completion: @escaping () -> Void = { }) {
           
-          let id = receipt.id
-          receipt.id = id
-          
+//          let id = receipt.id
+//          receipt.id = id
+        
+           guard let bearer = bearer else {
+                    completion()
+                    return
+                }
+        
         let requestURL = baseURL
-            .appendingPathComponent(String(id))
+            .appendingPathComponent("auth")
+            .appendingPathComponent("receipts")
+            .appendingPathComponent("add")
+
               .appendingPathExtension("json")
           
           var request = URLRequest(url: requestURL)
           request.httpMethod = HTTPMethod.put.rawValue
+    request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
           
           guard let receiptRepresentation = receipt.receiptRepresentation else {
               NSLog("Receipt Representation is nil")
@@ -172,7 +181,7 @@ class ReceiptController {
         let receipt = Receipt(date: date, amount: price, category: category, merchant: merchant, receiptDescription: receiptDescription, imageURL: imageURL, id: id, context: context)
         
         // TODO: PUT to database
-        
+//        addNewReceiptToServer(receipt: receipt)
         CoreDataStack.shared.save(context: context)
     }
     

@@ -41,6 +41,7 @@
                                                     </segments>
                                                     <connections>
                                                         <action selector="sortTypeValueChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="LeS-5r-fic"/>
+                                                        <action selector="sortingSegmentedControl:" destination="xts-ea-7Cu" eventType="valueChanged" id="zQy-aU-GEy"/>
                                                     </connections>
                                                 </segmentedControl>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WQO-VA-qyo">
@@ -51,6 +52,7 @@
                                                     </segments>
                                                     <connections>
                                                         <action selector="sortOptionValueChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="szL-aj-94c"/>
+                                                        <action selector="sortingOptionSegmentedControl:" destination="xts-ea-7Cu" eventType="valueChanged" id="TA9-SQ-Y44"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
@@ -118,12 +120,11 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="sortingOptionSegmentedControl" destination="WQO-VA-qyo" id="6nc-tP-hOm"/>
-                        <outlet property="sortingTypeSegmentedControl" destination="mXh-tp-zjj" id="LYb-nH-NVo"/>
                         <segue destination="Mhs-gW-Ga2" kind="presentation" identifier="LoginSegue" id="4oT-Q4-LVP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFz-UE-UGN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="xts-ea-7Cu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="852.17391304347836" y="-5.3571428571428568"/>
         </scene>
