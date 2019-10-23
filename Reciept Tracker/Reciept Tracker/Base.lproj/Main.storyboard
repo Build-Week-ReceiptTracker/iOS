@@ -259,20 +259,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8f-nd-HgF">
-                                        <rect key="frame" x="0.0" y="44" width="374" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="374" id="7UF-qP-V4Z"/>
-                                            <constraint firstAttribute="height" constant="34" id="Cnq-p5-SjI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1n-Vc-Kwx">
-                                        <rect key="frame" x="0.0" y="88" width="374" height="34"/>
+                                        <rect key="frame" x="0.0" y="44" width="374" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="JJN-St-aCo"/>
                                             <constraint firstAttribute="width" constant="374" id="L5q-Y0-yKO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8f-nd-HgF">
+                                        <rect key="frame" x="0.0" y="88" width="374" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="374" id="7UF-qP-V4Z"/>
+                                            <constraint firstAttribute="height" constant="34" id="Cnq-p5-SjI"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
