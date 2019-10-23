@@ -23,6 +23,7 @@ enum NetworkingError: Error {
     case unexpectedStatusCode(Int)
     case badDecode
     case badEncode
+    case noRepresentation
 }
 
 class ReceiptController {
@@ -37,53 +38,51 @@ class ReceiptController {
     
     //CREATE NEW
     //MARK: PUT Tasks to Firebase
-      
-      func addNewReceiptToServer(receipt: Receipt, completion: @escaping () -> Void = { }) {
-          
-//          let id = receipt.id
-//          receipt.id = id
+    
+    func addNewReceiptToServer(receipt: Receipt, completion: @escaping (NetworkingError?) -> Void = { _ in }) {
         
-           guard let bearer = bearer else {
-                    completion()
-                    return
-                }
+        //          let id = receipt.id
+        //          receipt.id = id
+        
+        guard let bearer = bearer else {
+            completion(.noBearer)
+            return
+        }
         
         let requestURL = baseURL
             .appendingPathComponent("auth")
             .appendingPathComponent("receipts")
             .appendingPathComponent("add")
-
-              .appendingPathExtension("json")
-          
-          var request = URLRequest(url: requestURL)
-          request.httpMethod = HTTPMethod.put.rawValue
-    request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
-          
-          guard let receiptRepresentation = receipt.receiptRepresentation else {
-              NSLog("Receipt Representation is nil")
-              completion()
-              return
-          }
-          
-          do {
-              request.httpBody = try JSONEncoder().encode(receiptRepresentation)
-          } catch {
-              NSLog("Error encoding receipt representation: \(error)")
-              completion()
-              return
-          }
-          
-          URLSession.shared.dataTask(with: request) { (_, _, error) in
-              
-              if let error = error {
-                  NSLog("Error PUTting receipt: \(error)")
-                  completion()
-                  return
-              }
-              
-              completion()
-          }.resume()
-      }
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        
+        guard let receiptRepresentation = receipt.receiptRepresentation else {
+            NSLog("Receipt Representation is nil")
+            completion(.noRepresentation)
+            return
+        }
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(receiptRepresentation)
+        } catch {
+            NSLog("Error encoding receipt representation: \(error)")
+            completion(.badEncode)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            
+            if let error = error {
+                NSLog("Error PUTting receipt: \(error)")
+                completion(.serverError(error))
+                return
+            }
+            
+            completion(nil)
+        }.resume()
+    }
     
     
     
@@ -124,7 +123,7 @@ class ReceiptController {
                     let id = receipt.id
                     guard let representation = representationsByID[id] else { continue }
                     
-
+                    
                     // We just updated a receipt, we don't need to create a new Receipt for this identifier
                     receiptsToCreate.removeValue(forKey: id)
                 }
@@ -180,9 +179,11 @@ class ReceiptController {
         
         let receipt = Receipt(date: date, amount: price, category: category, merchant: merchant, receiptDescription: receiptDescription, imageURL: imageURL, id: id, context: context)
         
-        // TODO: PUT to database
-//        addNewReceiptToServer(receipt: receipt)
-        CoreDataStack.shared.save(context: context)
+        addNewReceiptToServer(receipt: receipt) { (error) in
+            if error == nil {
+                CoreDataStack.shared.save(context: context)
+            }
+        }
     }
     
     func updateReceipt(receipt: Receipt, date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
