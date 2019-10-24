@@ -51,7 +51,7 @@ class ReceiptController {
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        request.setValue(bearer.token, forHTTPHeaderField: HeaderNames.authorization.rawValue)
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
@@ -93,7 +93,7 @@ class ReceiptController {
     
     
     //MARK: PUT
-    func addNewReceiptToServer(receipt: Receipt, completion: @escaping (NetworkingError?) -> Void = { _ in }) {
+    func addNewReceiptToServer(postReceiptRepresentation: PostReceiptRepresentation, completion: @escaping (NetworkingError?) -> Void = { _ in }) {
         
         guard let bearer = bearer else {
             completion(.noBearer)
@@ -107,21 +107,23 @@ class ReceiptController {
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        request.setValue("\(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
         request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
+        print(bearer.token)
         
         
-        guard let receiptRepresentation = receipt.receiptRepresentation else {
-            NSLog("Receipt Representation is nil")
-            completion(.noRepresentation)
-            return
-        }
+//        guard let postReceiptRepresentation = receipt.postReceiptRepresentation else {
+//            NSLog("Receipt Representation is nil")
+//            completion(.noRepresentation)
+//            return
+//        }
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         
         do {
-            request.httpBody = try encoder.encode(receiptRepresentation)
+            request.httpBody = try encoder.encode(postReceiptRepresentation)
+            print(String(data: request.httpBody!, encoding: .utf8))
         } catch {
             NSLog("Error encoding receipt representation: \(error)")
             completion(.badEncode)
@@ -150,7 +152,7 @@ class ReceiptController {
             
             do {
                 let id = try JSONDecoder().decode(ReceiptID.self, from: data)
-                self.receiptID = id.receiptID
+                self.receiptID = Int64(id.receiptID)
                 completion(nil)
             } catch {
                 NSLog("Could not decode receipt ID: \(error)")
@@ -229,7 +231,6 @@ class ReceiptController {
         
         let requestURL = baseURL
             .appendingPathComponent(String(id))
-            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
@@ -237,7 +238,7 @@ class ReceiptController {
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             
             if let error = error {
-                NSLog("Error deleting receipt \(receipt.id) from server: \(error)")
+                NSLog("Error deleting receipt \(id) from server: \(error)")
                 completion()
                 return
             }
@@ -251,11 +252,13 @@ class ReceiptController {
 
     func createReceipt(dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String, imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
         
-        let receipt = Receipt(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, receiptDescription: receiptDescription, context: context)
+//        let receipt = Receipt(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, receiptDescription: receiptDescription, context: context)
 
-        addNewReceiptToServer(receipt: receipt, completion: { (error) in
+        let postReceiptRepresentation = PostReceiptRepresentation(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, description: receiptDescription)
+        
+        addNewReceiptToServer(postReceiptRepresentation: postReceiptRepresentation, completion: { (error) in
             if let id =  self.receiptID{
-                receipt.id = id
+                Receipt(id: id, postReceiptRepresentation: postReceiptRepresentation, context: context)
                 print(id)
                 CoreDataStack.shared.save(context: context)
             }
