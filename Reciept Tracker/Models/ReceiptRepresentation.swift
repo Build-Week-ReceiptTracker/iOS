@@ -18,8 +18,35 @@ struct ReceiptRepresentation: Codable {
     let imageURL: String?
     let description: String?
     
-    // TODO: match the name to the backend name
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case dateOfTransaction = "date_of_transaction"
+        case amountSpent = "amount_spent"
+        case category
+        case merchant
+        case imageURL = "image_url"
+        case description
+    }
+}
+
+struct PostReceiptRepresentation: Encodable {
+    let dateOfTransaction: Date
+    let amountSpent: Double
+    let category: String
+    let merchant: String
+    let imageURL: String?
+    let userUsername: String
+    let description: String?
     
+    private enum CodingKeys: String, CodingKey {
+        case dateOfTransaction = "date_of_transaction"
+        case amountSpent = "amount_spent"
+        case category
+        case merchant
+        case imageURL = "image_url"
+        case userUsername = "user_username"
+        case description
+    }
 }
 
 struct ReceiptID: Codable {

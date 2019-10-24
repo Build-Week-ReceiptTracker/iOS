@@ -126,6 +126,7 @@ class LogInController {
             do {
                 let bearer = try JSONDecoder().decode(Bearer.self, from: data)
                 self.bearer = bearer
+                print(bearer.token)
             } catch {
                 NSLog("Error decoding the bearer token: \(error)")
                 completion(error)
