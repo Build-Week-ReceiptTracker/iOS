@@ -8,75 +8,106 @@
 
 import UIKit
 import CoreData
-
-enum SortingType: String, CaseIterable {
-    // TODO: match the core data model names
-    case merchant = "merchant"
-    case amount = "price"
-    case date = "date"
-    case category = "category"
-}
-
-enum SortingOption: CaseIterable {
-    case ascending
-    case descending
-}
+//
+//enum SortingType: String, CaseIterable {
+//    // TODO: match the core data model names
+//    case merchant = "merchant"
+//    case amount = "price"
+//    case date = "date"
+//    case category = "category"
+//}
+//
+//enum SortingOption: CaseIterable {
+//    case ascending
+//    case descending
+//}
 
 class ReceiptsTableViewController: UITableViewController {
-
-    @IBOutlet weak var sortingTypeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var sortingOptionSegmentedControl: UISegmentedControl!
     
     var receiptController = ReceiptController()
     var logInController = LogInController()
     
-    var sortType: SortingType = .merchant
-    var sortOption: SortingOption = .ascending
+//    var sortType: SortingType = .merchant
+//    var sortOption: SortingOption = .ascending
+//
+    var receipts: [ReceiptRepresentation] = []
     
-    var numberOfRowsPerSection: Int = 1
-    
-    lazy var fetchedResultsController: NSFetchedResultsController<Receipt> = {
-
-        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
-        fetchRequest.sortDescriptors = [
-            NSSortDescriptor(key: sortType.rawValue, ascending: true),
-            NSSortDescriptor(key: "date", ascending: true)
-        ]
-        
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: sortType.rawValue, cacheName: nil)
-        
-        frc.delegate = self
-        
-        do {
-            try frc.performFetch()
-        } catch {
-            fatalError("Error performing fetch for frc: \(error)")
-        }
-        return frc
-    }()
-    @IBAction func sortTypeValueChanged(_ sender: UISegmentedControl) {
-        sortType = SortingType.allCases[sender.selectedSegmentIndex]
-        tableView.reloadData()
-    }
-    @IBAction func sortOptionValueChanged(_ sender: UISegmentedControl) {
-        sortOption = SortingOption.allCases[sender.selectedSegmentIndex]
-        tableView.reloadData()
-    }
+//    lazy var fetchedResultsController: NSFetchedResultsController<Receipt> = {
+//
+//        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
+//        fetchRequest.sortDescriptors = [
+//            NSSortDescriptor(key: sortType.rawValue, ascending: true),
+//            NSSortDescriptor(key: "date", ascending: true)
+//        ]
+//
+//        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: sortType.rawValue, cacheName: nil)
+//
+//        frc.delegate = self
+//
+//        do {
+//            try frc.performFetch()
+//        } catch {
+//            fatalError("Error performing fetch for frc: \(error)")
+//        }
+//        return frc
+//    }()
+//    @IBAction func sortTypeValueChanged(_ sender: UISegmentedControl) {
+//        sortType = SortingType.allCases[sender.selectedSegmentIndex]
+//        tableView.reloadData()
+//    }
+//    @IBAction func sortOptionValueChanged(_ sender: UISegmentedControl) {
+//        sortOption = SortingOption.allCases[sender.selectedSegmentIndex]
+//        tableView.reloadData()
+//    }
     
     //MARK: Searching with Search Term
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else { return }
         
-        searchForReceipts(with: searchTerm) { (error) in
-            
-            guard error == nil else { return }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        
+        var receipts: [ReceiptRepresentation] = []
+        
+        //TODO: fetch all receipts in server and save them in this array
+        let allReceipts: [ReceiptRepresentation] = []
+        
+        let searchedReceipts = allReceipts.filter{ $0.merchant == searchTerm }
+        let searchedIDs = searchedReceipts.map{ $0.id }
+        
+        for id in searchedIDs {
+            receiptController.searchForReceipt(searchID: String(id)) { (result) in
+                
+                do {
+                    let receipt = try result.get()
+                    receipts.append(receipt)
+                    self.receipts = receipts
+                } catch {
+                    NSLog("Error fetching animal details: \(error)")
+                }
             }
         }
+        
+        
+//        guard let searchTerm = searchBar.text else { return }
+//
+//        receiptController.searchReceipts(with: searchTerm)
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+//
+////        searchForReceipts(with: searchTerm) { (error) in
+////
+////            guard error == nil else { return }
+////
+////            DispatchQueue.main.async {
+////                self.tableView.reloadData()
+////            }
+////        }
     }
     
+    
+    func searchReceipts(with searchTerm: String) -> [ReceiptRepresentation] {
+        return receipts
+    }
     
     // MARK: - Segue to Login page
     override func viewDidAppear(_ animated: Bool) {
@@ -97,41 +128,41 @@ class ReceiptsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 0
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return receipts.count
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+        return receipts.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as? ReceiptTableViewCell else { return UITableViewCell() }
-
-        cell.receipt = fetchedResultsController.object(at: indexPath)
-        cell.sortType = sortType
+        
+        //TODO: Set the receipt that will be used for the cell (Recipt, not ReceiptRepresentation)
+        //cell.receipt = receipts[indexPath.row].
         
         return cell
     }
 
-    
+    //TODO: It will not be from fetchedResultsController anymore
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            receiptController.deleteReceipt(receipt: fetchedResultsController.object(at: indexPath), context: CoreDataStack.shared.mainContext)
+            //receiptController.deleteReceipt(receipt: fetchedResultsController.object(at: indexPath), context: CoreDataStack.shared.mainContext)
         }
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if sortType != .amount {
-            return fetchedResultsController.sections?[section].name
-        } else {
-            return nil
-        }
-    }
-    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if sortType != .amount {
+//            return fetchedResultsController.sections?[section].name
+//        } else {
+//            return nil
+//        }
+//    }
+//
 
     
     // MARK: - Navigation
@@ -144,58 +175,6 @@ class ReceiptsTableViewController: UITableViewController {
             }
         }
     }
-    
-    
-    //TODO: Add this to the ReceiptController
-    func searchForReceipts(with searchTerm: String, completion: @escaping (Error?) -> Void) {
-        
-        //TODO: Get all receipts from core data
-        var receipts: [ReceiptRepresentation] = []
-        var searchedReceipts = receipts.filter{ $0.merchant == searchTerm }
-        var searchedIDs = searchedReceipts.map{ $0.id }
-        
-        
-        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        
-        let queryParameters = ["query": searchTerm,
-                               "api_key": "id"]
-        
-        components?.queryItems = queryParameters.map({URLQueryItem(name: $0.key, value: $0.value)})
-        
-        guard let requestURL = components?.url else {
-            completion(NSError())
-            return
-        }
-        
-        URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
-            
-            if let error = error {
-                NSLog("Error searching for receipt with search term \(searchTerm): \(error)")
-                completion(error)
-                return
-            }
-            
-            guard let data = data else {
-                NSLog("No data returned from data task")
-                completion(NSError())
-                return
-            }
-            
-            do {
-                let receiptRepresentations = try JSONDecoder().decode(ReceiptRepresentations.self, from: data).results
-                self.searchedReceipts = receiptRepresentations
-                completion(nil)
-            } catch {
-                NSLog("Error decoding JSON data: \(error)")
-                completion(error)
-            }
-        }.resume()
-    }
-    
-    
-    
-    
-
 }
 
 extension ReceiptsTableViewController: NSFetchedResultsControllerDelegate {

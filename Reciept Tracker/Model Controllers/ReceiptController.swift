@@ -33,13 +33,14 @@ class ReceiptController {
     
     var coreDataStack: CoreDataStack?
     var bearer: Bearer?
+    var searchedReceipts: [ReceiptRepresentation] = []
     
     init() {
         fetchReceiptsFromServer()
     }
     
     
-    // Fetch from server
+    //MARK: Fetch from server
     func fetchReceiptsFromServer(completion: @escaping (NetworkingError?) -> Void = { _ in }) {
         guard let bearer = bearer else { return }
         
@@ -86,10 +87,11 @@ class ReceiptController {
     }
     
     
-    
     //MARK: Back-End CRUD Methods
-    //MARK: PUT
     
+    
+    
+    //MARK: PUT
     func addNewReceiptToServer(receipt: Receipt, completion: @escaping (NetworkingError?) -> Void = { _ in }) {
         
         //          let id = receipt.id
@@ -109,7 +111,7 @@ class ReceiptController {
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
         request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
-
+        
         
         guard let receiptRepresentation = receipt.receiptRepresentation else {
             NSLog("Receipt Representation is nil")
@@ -149,7 +151,7 @@ class ReceiptController {
             
             do {
                 let receiptID = try JSONDecoder().decode(ReceiptID.self, from: data)
-                receiptRepresentation.id = receiptID.receiptID
+                // receiptRepresentation.id = receiptID.receiptID
             } catch {
                 
             }
@@ -217,8 +219,7 @@ class ReceiptController {
         }
     }
     
-    
-    
+
     
     //MARK: DELETE
     func deleteReceiptFromServer(_ receipt: Receipt, completion: @escaping () -> Void = { }) {
@@ -245,10 +246,9 @@ class ReceiptController {
     
     
     
-    
-    
-    
     // MARK: - Core Data CRUD Methods
+    
+    // Create
     func createReceipt(date: Date, price: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, id: Int16, context: NSManagedObjectContext) {
         
         let receipt = Receipt(date: date, amount: price, category: category, merchant: merchant, receiptDescription: receiptDescription, imageURL: imageURL, id: id, context: context)
@@ -260,6 +260,7 @@ class ReceiptController {
         }
     }
     
+    //Update
     func updateReceipt(receipt: Receipt, date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
         
         receipt.date = date
@@ -275,6 +276,7 @@ class ReceiptController {
         
     }
     
+    //Delete
     func deleteReceipt(receipt: Receipt, context: NSManagedObjectContext) {
         context.performAndWait {
             
@@ -284,5 +286,58 @@ class ReceiptController {
             CoreDataStack.shared.save(context: context)
         }
     }
+    
+    
+    func searchForReceipt(searchID: String, completion: @escaping (Result<ReceiptRepresentation, NetworkingError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("auth")
+            .appendingPathComponent("receipts")
+            .appendingPathComponent(String(searchID))
+            .appendingPathExtension("json")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let error = error {
+                NSLog("Error fetching receipt details: \(error)")
+                completion(.failure(.serverError(error)))
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.unexpectedStatusCode(response.statusCode)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .secondsSince1970
+                
+                let receipt = try decoder.decode(ReceiptRepresentation.self, from: data)
+                
+                completion(.success(receipt))
+                
+            } catch {
+                NSLog("Error decoding Receipt: \(error)")
+                completion(.failure(.badDecode))
+            }
+        }.resume()
+    }
+    
+    //let params = 
     
 }

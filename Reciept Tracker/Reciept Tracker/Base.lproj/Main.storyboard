@@ -16,70 +16,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="frV-Xb-6fp">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vwT-kj-KF3">
-                                    <rect key="frame" x="4" y="0.0" width="406" height="136"/>
-                                    <subviews>
-                                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="sqv-cB-6BS">
-                                            <rect key="frame" x="0.0" y="0.0" width="406" height="56"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </searchBar>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xs1-Uw-YvZ">
-                                            <rect key="frame" x="0.0" y="56" width="406" height="80"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31V-eB-8hq">
-                                                    <rect key="frame" x="0.0" y="30" width="61.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="6AH-Ce-OjX">
-                                                    <rect key="frame" x="71.5" y="6" width="334.5" height="68"/>
-                                                    <subviews>
-                                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mXh-tp-zjj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="334.5" height="32"/>
-                                                            <segments>
-                                                                <segment title="Merchant"/>
-                                                                <segment title="Amount"/>
-                                                                <segment title="Date"/>
-                                                                <segment title="Category"/>
-                                                            </segments>
-                                                            <connections>
-                                                                <action selector="sortTypeValueChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="LeS-5r-fic"/>
-                                                                <action selector="sortingSegmentedControl:" destination="xts-ea-7Cu" eventType="valueChanged" id="zQy-aU-GEy"/>
-                                                            </connections>
-                                                        </segmentedControl>
-                                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WQO-VA-qyo">
-                                                            <rect key="frame" x="0.0" y="37" width="334.5" height="32"/>
-                                                            <segments>
-                                                                <segment title="Ascending"/>
-                                                                <segment title="Descending"/>
-                                                            </segments>
-                                                            <connections>
-                                                                <action selector="sortOptionValueChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="szL-aj-94c"/>
-                                                                <action selector="sortingOptionSegmentedControl:" destination="xts-ea-7Cu" eventType="valueChanged" id="TA9-SQ-Y44"/>
-                                                            </connections>
-                                                        </segmentedControl>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                </stackView>
+                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="sqv-cB-6BS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="vwT-kj-KF3" secondAttribute="trailing" constant="4" id="18V-TI-NxQ"/>
-                                <constraint firstItem="vwT-kj-KF3" firstAttribute="top" secondItem="frV-Xb-6fp" secondAttribute="top" id="I5j-ev-QKK"/>
-                                <constraint firstItem="vwT-kj-KF3" firstAttribute="leading" secondItem="frV-Xb-6fp" secondAttribute="leading" constant="4" id="X0I-AG-TmU"/>
-                                <constraint firstAttribute="bottom" secondItem="vwT-kj-KF3" secondAttribute="bottom" constant="4" id="rwg-rZ-rDq"/>
+                                <constraint firstItem="sqv-cB-6BS" firstAttribute="top" secondItem="frV-Xb-6fp" secondAttribute="top" id="Kcu-lQ-wgK"/>
+                                <constraint firstAttribute="trailing" secondItem="sqv-cB-6BS" secondAttribute="trailing" id="cS2-d4-Wn9"/>
+                                <constraint firstAttribute="bottom" secondItem="sqv-cB-6BS" secondAttribute="bottom" id="sCc-JM-2SP"/>
+                                <constraint firstItem="sqv-cB-6BS" firstAttribute="leading" secondItem="frV-Xb-6fp" secondAttribute="leading" id="swm-Ta-8cF"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceiptCell" textLabel="QvN-zj-Nci" detailTextLabel="SeE-2S-4gc" style="IBUITableViewCellStyleValue1" id="kGw-Cn-j27" customClass="ReceiptTableViewCell" customModule="ReceiptTracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="168" width="414" height="47.5"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="47.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kGw-Cn-j27" id="enm-g8-oBG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="47.5"/>
@@ -132,7 +87,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFz-UE-UGN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="xts-ea-7Cu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="852.17391304347836" y="-5.3571428571428568"/>
         </scene>
