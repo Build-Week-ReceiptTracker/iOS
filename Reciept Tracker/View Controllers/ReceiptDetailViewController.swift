@@ -56,7 +56,7 @@ class ReceiptDetailViewController: UIViewController {
                 !category.isEmpty else { return }
             
             //TODO: Call method(s) to create new receipt
-            receiptController?.createReceipt(dateOfTransaction: dateFormatted, amountSpent: amountString, category: category, merchant: merchant, imageURL: nil, username: username, receiptDescription: nil, context: CoreDataStack.shared.mainContext)
+            receiptController?.createReceipt(dateOfTransaction: date, amountSpent: amountString, category: category, merchant: merchant, imageURL: nil, username: username, receiptDescription: nil, context: CoreDataStack.shared.mainContext)
             
         } else { return }
         navigationController?.popViewController(animated: true)
@@ -117,7 +117,8 @@ class ReceiptDetailViewController: UIViewController {
         }
         
         nameTextField.text = receipt.merchant
-        dateTextField.text = dateFormatter.string(from: date)
+        //dateTextField.text = dateFormatter.string(from: date)
+        dateTextField.text = date
         categoryTextField.text = receipt.category
         amountTextField.text = amountSpent
         pictureImageView.image = UIImage(named: imageURL)
