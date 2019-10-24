@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,7 @@
 /* Begin PBXFileReference section */
 		56A4A83BA0B0F7536C4073D6 /* Pods-ReceiptTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptTracker.release.xcconfig"; path = "Target Support Files/Pods-ReceiptTracker/Pods-ReceiptTracker.release.xcconfig"; sourceTree = "<group>"; };
 		A6631C3D235F915C00D251A6 /* ReceiptTracker 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ReceiptTracker 2.xcdatamodel"; sourceTree = "<group>"; };
+		A6631C3E2361815400D251A6 /* ReceiptTracker 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ReceiptTracker 3.xcdatamodel"; sourceTree = "<group>"; };
 		A69EF726235E49DB005C165D /* ReceiptTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReceiptTracker.xcdatamodel; sourceTree = "<group>"; };
 		A69EF729235E5339005C165D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A69EF72B235E538E005C165D /* Receipt+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Receipt+Convenience.swift"; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 				FD5ADDCD9ECCA8A9D4B48FE1 /* Pods-ReceiptTracker.debug.xcconfig */,
 				56A4A83BA0B0F7536C4073D6 /* Pods-ReceiptTracker.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -499,10 +499,11 @@
 		A69EF725235E49DB005C165D /* ReceiptTracker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A6631C3E2361815400D251A6 /* ReceiptTracker 3.xcdatamodel */,
 				A6631C3D235F915C00D251A6 /* ReceiptTracker 2.xcdatamodel */,
 				A69EF726235E49DB005C165D /* ReceiptTracker.xcdatamodel */,
 			);
-			currentVersion = A6631C3D235F915C00D251A6 /* ReceiptTracker 2.xcdatamodel */;
+			currentVersion = A6631C3E2361815400D251A6 /* ReceiptTracker 3.xcdatamodel */;
 			path = ReceiptTracker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

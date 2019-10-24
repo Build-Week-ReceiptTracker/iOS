@@ -32,10 +32,10 @@ class ReceiptTableViewCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yy"
         
-        merchantLabel.text = formatter.string(from: receipt.date!)
+        merchantLabel.text = formatter.string(from: receipt.dateOfTransaction!)
         
         
-        priceLabel.text = currencyFormatter.string(for: receipt.amount)
+        priceLabel.text = currencyFormatter.string(for: receipt.amountSpent)
         
     }
 }

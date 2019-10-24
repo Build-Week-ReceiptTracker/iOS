@@ -13,46 +13,62 @@ extension Receipt {
     
     var receiptRepresentation: ReceiptRepresentation? {
         
-        guard let date = date,
+        guard let dateOfTransaction = dateOfTransaction,
             let category = category,
             let merchant = merchant else { return nil }
         
-        return ReceiptRepresentation(id: id, dateOfTransaction: date, amountSpent: amount, category: category, merchant: merchant, imageURL: imageURL, description: receiptDescription)
+        return ReceiptRepresentation(id: id, dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, description: description)
     }
     
-    @discardableResult convenience init(date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, id: Int16, context: NSManagedObjectContext) {
+    // Full initializer
+    @discardableResult convenience init(id: Int64?, dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String,  imageURL: String?, username: String?, receiptDescription: String?, context: NSManagedObjectContext) {
         self.init(context: context)
-        self.date = date
-        self.amount = amount
+        self.id = id ?? -1 // When there is no id value, default to -1
+        self.dateOfTransaction = dateOfTransaction
+        self.amountSpent = amountSpent
         self.category = category
         self.merchant = merchant
-        self.receiptDescription = receiptDescription
         self.imageURL = imageURL
-        self.id = id
+        self.username = username
+        self.receiptDescription = receiptDescription
     }
     
-    // Initializer without id
-    @discardableResult convenience init(date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
-           self.init(context: context)
-           self.date = date
-           self.amount = amount
-           self.category = category
-           self.merchant = merchant
-           self.receiptDescription = receiptDescription
-           self.imageURL = imageURL
-       }
+    // POST, PUT initializer
+    @discardableResult convenience init(dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String,  imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
+        self.init(context: context)
+        self.dateOfTransaction = dateOfTransaction
+        self.amountSpent = amountSpent
+        self.category = category
+        self.merchant = merchant
+        self.imageURL = imageURL
+        self.username = username
+        self.receiptDescription = receiptDescription
+    }
+    
+    // GET initializer
+    @discardableResult convenience init(id: Int64?, dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String, imageURL: String?, receiptDescription: String?, context: NSManagedObjectContext) {
+        self.init(context: context)
+        self.id = id ?? -1
+        self.dateOfTransaction = dateOfTransaction
+        self.amountSpent = amountSpent
+        self.category = category
+        self.merchant = merchant
+        self.imageURL = imageURL
+        self.receiptDescription = receiptDescription
+    }
     
     
     
     @discardableResult convenience init?(receiptRepresentation: ReceiptRepresentation, context: NSManagedObjectContext) {
-              
-        self.init(date: receiptRepresentation.dateOfTransaction,
-                  amount: receiptRepresentation.amountSpent,
+        
+        self.init(id: receiptRepresentation.id,
+                  dateOfTransaction: receiptRepresentation.dateOfTransaction,
+                  amountSpent: receiptRepresentation.amountSpent,
                   category: receiptRepresentation.category,
                   merchant: receiptRepresentation.merchant,
-                  receiptDescription: receiptRepresentation.description,
                   imageURL: receiptRepresentation.imageURL,
-                  id: receiptRepresentation.id,
+                  username: receiptRepresentation.username,
+                  receiptDescription: receiptRepresentation.description,
                   context: context)
     }
     

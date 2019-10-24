@@ -19,6 +19,7 @@ class ReceiptDetailViewController: UIViewController {
     
     var receipt: Receipt?
     var receiptController: ReceiptController?
+    var logInController: LogInController?
     let dateFormatter = DateFormatter()
     let imagePicker = UIImagePickerController()
     var jpegImage: String = ""
@@ -28,6 +29,7 @@ class ReceiptDetailViewController: UIViewController {
         super.viewDidLoad()
         updateViews()
           imagePicker.delegate = self
+        dateFormatter.dateFormat = "MM/dd/yy"
     }
     
     //MARK: Actions
@@ -39,19 +41,20 @@ class ReceiptDetailViewController: UIViewController {
                 let date = dateTextField.text,
                 let dateFormatted = dateFormatter.date(from: date),
                 let category = categoryTextField.text,
-                let amount = amountTextField.text,
-                let imageURL = pictureImageView,
+                let amountString = amountTextField.text,
+                let amount = Double(amountString),
+                let logInController = logInController,
+                let username = logInController.username,
+                // let imageURL = pictureImageView.image,
                 !merchant.isEmpty,
                 !date.isEmpty,
                 !category.isEmpty else { return }
             
             //TODO: Call method(s) to create new receipt
-            
-            
-            let newReceipt = Receipt(date: dateFormatted, amount: amount as! Double, category: category, merchant: merchant, receiptDescription: nil, imageURL: nil, context: CoreDataStack.shared.mainContext)
-            receiptController?.addNewReceiptToServer(receipt: newReceipt)
+            receiptController?.createReceipt(dateOfTransaction: dateFormatted, amountSpent: amount, category: category, merchant: merchant, imageURL: nil, username: username, receiptDescription: nil, context: CoreDataStack.shared.mainContext)
             
         } else { return }
+        navigationController?.popViewController(animated: true)
     }
     
     // Adding Image with Image Picker
@@ -91,7 +94,7 @@ class ReceiptDetailViewController: UIViewController {
         
         
         guard let receipt = receipt,
-            let date = receipt.date,
+            let date = receipt.dateOfTransaction,
             let imageURL = receipt.imageURL else {
                 
                 nameTextField.isEnabled = true
@@ -110,7 +113,7 @@ class ReceiptDetailViewController: UIViewController {
         nameTextField.text = receipt.merchant
         dateTextField.text = dateFormatter.string(from: date)
         categoryTextField.text = receipt.category
-        amountTextField.text = String(receipt.amount)
+        amountTextField.text = String(receipt.amountSpent)
         pictureImageView.image = UIImage(named: imageURL)
         
         nameTextField.isEnabled = false
