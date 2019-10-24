@@ -7,16 +7,176 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4189C96F-AF1F-4142-84F9-9411FB480D5A"
+            uuid = "8DC844DB-BA58-4CE0-8A84-81CB87B69CEF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "View Controllers/ReceiptLogInViewController.swift"
+            filePath = "View Controllers/ReceiptDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "logIn(with:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "saveButtonTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D42EAA04-1610-43E4-A0E6-B2CB77623222"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model Controllers/ReceiptController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "addNewReceiptToServer(receipt:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3ED57836-1370-418D-B161-655FE3482023"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model Controllers/ReceiptController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "createReceipt(date:price:category:merchant:receiptDescription:imageURL:id:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B9D5562-BCF7-43B2-A1BE-1D6816E401C6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "View Controllers/ReceiptDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "saveButtonTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5034DF2A-C7CC-4B03-B6BC-572A69C26C4C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model Controllers/ReceiptController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "addNewReceiptToServer(receipt:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5034DF2A-C7CC-4B03-B6BC-572A69C26C4C - b6cad30e5f2936e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReceiptTracker.ReceiptController.addNewReceiptToServer(receipt: ReceiptTracker.Receipt, completion: (Swift.Optional&lt;ReceiptTracker.NetworkingError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ReceiptTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gipgip/Development/Build%20Week%202/iOS/Reciept%20Tracker/Model%20Controllers/ReceiptController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "2061">
+               </Location>
+               <Location
+                  uuid = "5034DF2A-C7CC-4B03-B6BC-572A69C26C4C - ff4d22d163fad077"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ReceiptTracker.ReceiptController.addNewReceiptToServer(receipt: ReceiptTracker.Receipt, completion: (Swift.Optional&lt;ReceiptTracker.NetworkingError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ReceiptTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gipgip/Development/Build%20Week%202/iOS/Reciept%20Tracker/Model%20Controllers/ReceiptController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "400">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC017F19-6801-4358-ADCA-20D794CCC47C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model Controllers/ReceiptController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "createReceipt(date:price:category:merchant:receiptDescription:imageURL:id:context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AC017F19-6801-4358-ADCA-20D794CCC47C - dfb25a0e83d84a04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReceiptTracker.ReceiptController.createReceipt(date: Foundation.Date, amount: Swift.Double, category: Swift.String, merchant: Swift.String, receiptDescription: Swift.Optional&lt;Swift.String&gt;, imageURL: Swift.Optional&lt;Swift.String&gt;, context: __C.NSManagedObjectContext) -&gt; ()"
+                  moduleName = "ReceiptTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gipgip/Development/Build%20Week%202/iOS/Reciept%20Tracker/Model%20Controllers/ReceiptController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "259"
+                  endingLineNumber = "259"
+                  offsetFromSymbolStart = "835">
+               </Location>
+               <Location
+                  uuid = "AC017F19-6801-4358-ADCA-20D794CCC47C - aa851c02ff020c99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;ReceiptTracker.NetworkingError&gt;) -&gt; () in ReceiptTracker.ReceiptController.createReceipt(date: Foundation.Date, amount: Swift.Double, category: Swift.String, merchant: Swift.String, receiptDescription: Swift.Optional&lt;Swift.String&gt;, imageURL: Swift.Optional&lt;Swift.String&gt;, context: __C.NSManagedObjectContext) -&gt; ()"
+                  moduleName = "ReceiptTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gipgip/Development/Build%20Week%202/iOS/Reciept%20Tracker/Model%20Controllers/ReceiptController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "184">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC659C07-8098-48C1-B1B8-B4FB021DCAD9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model Controllers/ReceiptController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "addNewReceiptToServer(receipt:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
