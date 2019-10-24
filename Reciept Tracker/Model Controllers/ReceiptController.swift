@@ -32,7 +32,7 @@ class ReceiptController {
     private let baseURL = URL(string: "https://api-receipt-tracker.herokuapp.com/api")!
     
     var bearer: Bearer?
-    var receiptID: Int16?
+    var receiptID: Int64?
     var searchedReceipts: [ReceiptRepresentation] = []
     
     init() {
@@ -95,9 +95,6 @@ class ReceiptController {
     //MARK: PUT
     func addNewReceiptToServer(receipt: Receipt, completion: @escaping (NetworkingError?) -> Void = { _ in }) {
         
-        //          let id = receipt.id
-        //          receipt.id = id
-        
         guard let bearer = bearer else {
             completion(.noBearer)
             return
@@ -114,7 +111,7 @@ class ReceiptController {
         request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
         
         
-        guard var receiptRepresentation = receipt.receiptRepresentation else {
+        guard let receiptRepresentation = receipt.receiptRepresentation else {
             NSLog("Receipt Representation is nil")
             completion(.noRepresentation)
             return
@@ -252,9 +249,9 @@ class ReceiptController {
     
     // MARK: - Core Data CRUD Methods
 
-    func createReceipt(date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
+    func createReceipt(dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String, imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
         
-        let receipt = Receipt(date: date, amount: amount, category: category, merchant: merchant, receiptDescription: receiptDescription, imageURL: imageURL, context: context)
+        let receipt = Receipt(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, receiptDescription: receiptDescription, context: context)
 
         addNewReceiptToServer(receipt: receipt, completion: { (error) in
             if let id =  self.receiptID{
@@ -269,8 +266,8 @@ class ReceiptController {
     //Update
     func updateReceipt(receipt: Receipt, date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
         
-        receipt.date = date
-        receipt.amount = amount
+        receipt.dateOfTransaction = date
+        receipt.amountSpent = amount
         receipt.category = category
         receipt.merchant = merchant
         receipt.receiptDescription = receiptDescription
@@ -305,7 +302,6 @@ class ReceiptController {
             .appendingPathComponent("auth")
             .appendingPathComponent("receipts")
             .appendingPathComponent(String(searchID))
-            .appendingPathExtension("json")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue

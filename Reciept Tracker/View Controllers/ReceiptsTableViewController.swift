@@ -74,14 +74,16 @@ class ReceiptsTableViewController: UITableViewController {
         let searchedIDs = searchedReceipts.map{ $0.id }
         
         for id in searchedIDs {
-            receiptController.searchForReceipt(searchID: String(id)) { (result) in
-                
-                do {
-                    let receipt = try result.get()
-                    receipts.append(receipt)
-                    self.receipts = receipts
-                } catch {
-                    NSLog("Error fetching animal details: \(error)")
+            if let id = id {
+                receiptController.searchForReceipt(searchID: String(id)) { (result) in
+                    
+                    do {
+                        let receipt = try result.get()
+                        receipts.append(receipt)
+                        self.receipts = receipts
+                    } catch {
+                        NSLog("Error fetching animal details: \(error)")
+                    }
                 }
             }
         }
@@ -182,6 +184,7 @@ class ReceiptsTableViewController: UITableViewController {
                 let indexPath = tableView.indexPathForSelectedRow {
                 detailVC.receiptController = receiptController
                 detailVC.receipt = fetchedResultsController.object(at: indexPath)
+                detailVC.logInController = logInController
             }
         }
     }
