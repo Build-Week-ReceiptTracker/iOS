@@ -11,6 +11,11 @@ import Foundation
 //extension ReceiptController {
 //    var cloudinaryURL =  "https://api.cloudinary.com/v1_1/iosdevlambda"
 //    var cloudinaryUploadPresent = "z2og3e0q"
+<<<<<<< HEAD
 //
 //
+=======
+//    
+//    
+>>>>>>> develop
 //}
