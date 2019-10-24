@@ -8,12 +8,13 @@
 
 import UIKit
 import CoreData
+import Cloudinary
 
 enum SortingType: String, CaseIterable {
     // TODO: match the core data model names
     case merchant = "merchant"
-    case amount = "price"
-    case date = "date"
+    case amount = "amount_spent"
+    case date = "date_of_transaction"
     case category = "category"
 }
 
@@ -23,6 +24,18 @@ enum SortingType: String, CaseIterable {
 //}
 
 class ReceiptsTableViewController: UITableViewController {
+    
+    
+//    func imageUpload() {
+//        let config = CLDConfiguration(cloudName: "iosdevlambda", secure: true) //https
+//        let cloudinary = CLDCloudinary(configuration: config)
+//        
+//        cloudinary.createUploader().upload(data: <#T##Data#>, uploadPreset: <#T##String#>)
+//        
+//        //let param = CLDUploadRequestParams().setUploadPreset(<#T##uploadPreset: String##String#>)
+//        
+//    }
+   
     
     var receiptController = ReceiptController()
     var logInController = LogInController()
@@ -38,7 +51,7 @@ class ReceiptsTableViewController: UITableViewController {
         let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: sortType.rawValue, ascending: true),
-            NSSortDescriptor(key: "date", ascending: true)
+            NSSortDescriptor(key: "dateOfTransaction", ascending: true)
         ]
 
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: sortType.rawValue, cacheName: nil)
@@ -61,6 +74,8 @@ class ReceiptsTableViewController: UITableViewController {
 //        tableView.reloadData()
 //    }
     @IBAction func sortingTypeSegControlChanged(_ sender: UISegmentedControl) {
+        
+        
     }
     
     //MARK: Searching with Search Term
