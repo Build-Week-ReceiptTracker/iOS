@@ -8,15 +8,15 @@
 
 import UIKit
 import CoreData
-//
-//enum SortingType: String, CaseIterable {
-//    // TODO: match the core data model names
-//    case merchant = "merchant"
-//    case amount = "price"
-//    case date = "date"
-//    case category = "category"
-//}
-//
+
+enum SortingType: String, CaseIterable {
+    // TODO: match the core data model names
+    case merchant = "merchant"
+    case amount = "price"
+    case date = "date"
+    case category = "category"
+}
+
 //enum SortingOption: CaseIterable {
 //    case ascending
 //    case descending
@@ -27,34 +27,34 @@ class ReceiptsTableViewController: UITableViewController {
     var receiptController = ReceiptController()
     var logInController = LogInController()
     
-//    var sortType: SortingType = .merchant
-//    var sortOption: SortingOption = .ascending
-//
+    var sortType: SortingType = .merchant
+   // var sortOption: SortingOption = .ascending
+
     var receipts: [ReceiptRepresentation] = []
     
-//    lazy var fetchedResultsController: NSFetchedResultsController<Receipt> = {
-//
-//        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
-//        fetchRequest.sortDescriptors = [
-//            NSSortDescriptor(key: sortType.rawValue, ascending: true),
-//            NSSortDescriptor(key: "date", ascending: true)
-//        ]
-//
-//        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: sortType.rawValue, cacheName: nil)
-//
-//        frc.delegate = self
-//
-//        do {
-//            try frc.performFetch()
-//        } catch {
-//            fatalError("Error performing fetch for frc: \(error)")
-//        }
-//        return frc
-//    }()
-//    @IBAction func sortTypeValueChanged(_ sender: UISegmentedControl) {
-//        sortType = SortingType.allCases[sender.selectedSegmentIndex]
-//        tableView.reloadData()
-//    }
+    lazy var fetchedResultsController: NSFetchedResultsController<Receipt> = {
+
+        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: sortType.rawValue, ascending: true),
+            NSSortDescriptor(key: "date", ascending: true)
+        ]
+
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: sortType.rawValue, cacheName: nil)
+
+        frc.delegate = self
+
+        do {
+            try frc.performFetch()
+        } catch {
+            fatalError("Error performing fetch for frc: \(error)")
+        }
+        return frc
+    }()
+    @IBAction func sortTypeValueChanged(_ sender: UISegmentedControl) {
+        sortType = SortingType.allCases[sender.selectedSegmentIndex]
+        tableView.reloadData()
+    }
 //    @IBAction func sortOptionValueChanged(_ sender: UISegmentedControl) {
 //        sortOption = SortingOption.allCases[sender.selectedSegmentIndex]
 //        tableView.reloadData()
@@ -64,46 +64,41 @@ class ReceiptsTableViewController: UITableViewController {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else { return }
         
-        
-        var receipts: [ReceiptRepresentation] = []
-        
-        //TODO: fetch all receipts in server and save them in this array
-        let allReceipts: [ReceiptRepresentation] = []
-        
-        let searchedReceipts = allReceipts.filter{ $0.merchant == searchTerm }
-        let searchedIDs = searchedReceipts.map{ $0.id }
-        
-        for id in searchedIDs {
-            if let id = id {
-                receiptController.searchForReceipt(searchID: String(id)) { (result) in
-                    
-                    do {
-                        let receipt = try result.get()
-                        receipts.append(receipt)
-                        self.receipts = receipts
-                    } catch {
-                        NSLog("Error fetching animal details: \(error)")
-                    }
-                }
+        receiptController.searchForReceipts(with: searchTerm) { (error) in
+            
+            guard error == nil else { return }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
         
         
-//        guard let searchTerm = searchBar.text else { return }
+        
+        
+        
+//        var receipts: [ReceiptRepresentation] = []
 //
-//        receiptController.searchReceipts(with: searchTerm)
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
+//        //TODO: fetch all receipts in server and save them in this array
+//        let allReceipts: [ReceiptRepresentation] = []
+//
+//        let searchedReceipts = allReceipts.filter{ $0.merchant == searchTerm }
+//        let searchedIDs = searchedReceipts.map{ $0.id }
+//
+//        for id in searchedIDs {
+//            if let id = id {
+//                receiptController.searchForReceipt(searchID: String(id)) { (result) in
+//
+//                    do {
+//                        let receipt = try result.get()
+//                        receipts.append(receipt)
+//                        self.receipts = receipts
+//                    } catch {
+//                        NSLog("Error fetching animal details: \(error)")
+//                    }
+//                }
+//            }
 //        }
-//
-////        searchForReceipts(with: searchTerm) { (error) in
-////
-////            guard error == nil else { return }
-////
-////            DispatchQueue.main.async {
-////                self.tableView.reloadData()
-////            }
-////        }
     }
     
     

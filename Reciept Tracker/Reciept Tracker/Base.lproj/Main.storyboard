@@ -16,25 +16,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="frV-Xb-6fp">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="sqv-cB-6BS">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zp5-3t-pks">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tOM-Nv-ReZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
+                                            <segments>
+                                                <segment title="Merchant"/>
+                                                <segment title="Category"/>
+                                                <segment title="Amount"/>
+                                                <segment title="Date"/>
+                                            </segments>
+                                        </segmentedControl>
+                                        <searchBar contentMode="redraw" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqv-cB-6BS">
+                                            <rect key="frame" x="0.0" y="34" width="414" height="56"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstItem="sqv-cB-6BS" firstAttribute="top" secondItem="frV-Xb-6fp" secondAttribute="top" id="Kcu-lQ-wgK"/>
-                                <constraint firstAttribute="trailing" secondItem="sqv-cB-6BS" secondAttribute="trailing" id="cS2-d4-Wn9"/>
-                                <constraint firstAttribute="bottom" secondItem="sqv-cB-6BS" secondAttribute="bottom" id="sCc-JM-2SP"/>
-                                <constraint firstItem="sqv-cB-6BS" firstAttribute="leading" secondItem="frV-Xb-6fp" secondAttribute="leading" id="swm-Ta-8cF"/>
+                                <constraint firstAttribute="trailing" secondItem="zp5-3t-pks" secondAttribute="trailing" id="25R-1N-djO"/>
+                                <constraint firstAttribute="bottom" secondItem="zp5-3t-pks" secondAttribute="bottom" id="6tf-dV-FHU"/>
+                                <constraint firstItem="zp5-3t-pks" firstAttribute="top" secondItem="frV-Xb-6fp" secondAttribute="top" id="BwG-St-C6R"/>
+                                <constraint firstItem="zp5-3t-pks" firstAttribute="leading" secondItem="frV-Xb-6fp" secondAttribute="leading" id="NV4-F7-fcC"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceiptCell" textLabel="QvN-zj-Nci" detailTextLabel="SeE-2S-4gc" style="IBUITableViewCellStyleValue1" id="kGw-Cn-j27" customClass="ReceiptTableViewCell" customModule="ReceiptTracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="47.5"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="47.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kGw-Cn-j27" id="enm-g8-oBG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="47.5"/>
