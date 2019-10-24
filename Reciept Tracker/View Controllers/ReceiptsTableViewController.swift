@@ -33,6 +33,8 @@ class ReceiptsTableViewController: UITableViewController {
     var sortType: SortingType = .merchant
     var sortOption: SortingOption = .ascending
     
+    var numberOfRowsPerSection: Int = 1
+    
     lazy var fetchedResultsController: NSFetchedResultsController<Receipt> = {
 
         let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
@@ -60,6 +62,21 @@ class ReceiptsTableViewController: UITableViewController {
         sortOption = SortingOption.allCases[sender.selectedSegmentIndex]
         tableView.reloadData()
     }
+    
+    //MARK: Searching with Search Term
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchTerm = searchBar.text else { return }
+        
+        searchForReceipts(with: searchTerm) { (error) in
+            
+            guard error == nil else { return }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     
     // MARK: - Segue to Login page
     override func viewDidAppear(_ animated: Bool) {
@@ -127,6 +144,56 @@ class ReceiptsTableViewController: UITableViewController {
             }
         }
     }
+    
+    
+    //TODO: Add this to the ReceiptController
+    func searchForReceipts(with searchTerm: String, completion: @escaping (Error?) -> Void) {
+        
+        //TODO: Get all receipts from core data
+        var receipts: [ReceiptRepresentation] = []
+        var searchedReceipts = receipts.filter{ $0.merchant == searchTerm }
+        var searchedIDs = searchedReceipts.map{ $0.id }
+        
+        
+        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        
+        let queryParameters = ["query": searchTerm,
+                               "api_key": "id"]
+        
+        components?.queryItems = queryParameters.map({URLQueryItem(name: $0.key, value: $0.value)})
+        
+        guard let requestURL = components?.url else {
+            completion(NSError())
+            return
+        }
+        
+        URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
+            
+            if let error = error {
+                NSLog("Error searching for receipt with search term \(searchTerm): \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from data task")
+                completion(NSError())
+                return
+            }
+            
+            do {
+                let receiptRepresentations = try JSONDecoder().decode(ReceiptRepresentations.self, from: data).results
+                self.searchedReceipts = receiptRepresentations
+                completion(nil)
+            } catch {
+                NSLog("Error decoding JSON data: \(error)")
+                completion(error)
+            }
+        }.resume()
+    }
+    
+    
+    
     
 
 }
