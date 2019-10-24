@@ -112,12 +112,6 @@ class ReceiptController {
         print(bearer.token)
         
         
-//        guard let postReceiptRepresentation = receipt.postReceiptRepresentation else {
-//            NSLog("Receipt Representation is nil")
-//            completion(.noRepresentation)
-//            return
-//        }
-        
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         
