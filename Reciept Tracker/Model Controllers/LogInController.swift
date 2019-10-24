@@ -19,6 +19,7 @@ class LogInController {
     //var receipts: [Receipt] = []
     
     var bearer: Bearer?
+    var username: String?
     private let loginBaseURL = URL(string: "https://api-receipt-tracker.herokuapp.com/api")!
 
 //    // MARK: Performing fetchAllReceipt Network call
@@ -126,6 +127,7 @@ class LogInController {
             do {
                 let bearer = try JSONDecoder().decode(Bearer.self, from: data)
                 self.bearer = bearer
+                self.username = user.username
                 print(bearer.token)
             } catch {
                 NSLog("Error decoding the bearer token: \(error)")

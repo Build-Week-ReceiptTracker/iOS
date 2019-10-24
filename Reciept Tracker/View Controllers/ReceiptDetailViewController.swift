@@ -19,6 +19,7 @@ class ReceiptDetailViewController: UIViewController {
     
     var receipt: Receipt?
     var receiptController: ReceiptController?
+    var logInController: LogInController?
     let dateFormatter = DateFormatter()
     let imagePicker = UIImagePickerController()
     var jpegImage: String = ""
@@ -42,13 +43,15 @@ class ReceiptDetailViewController: UIViewController {
                 let category = categoryTextField.text,
                 let amountString = amountTextField.text,
                 let amount = Double(amountString),
+                let logInController = logInController,
+                let username = logInController.username,
                 // let imageURL = pictureImageView.image,
                 !merchant.isEmpty,
                 !date.isEmpty,
                 !category.isEmpty else { return }
             
             //TODO: Call method(s) to create new receipt
-            receiptController?.createReceipt(date: dateFormatted, amount: amount, category: category, merchant: merchant, receiptDescription: nil, imageURL: nil, context: CoreDataStack.shared.mainContext)
+            receiptController?.createReceipt(dateOfTransaction: dateFormatted, amountSpent: amount, category: category, merchant: merchant, imageURL: nil, username: username, receiptDescription: nil, context: CoreDataStack.shared.mainContext)
             
         } else { return }
         navigationController?.popViewController(animated: true)
@@ -91,7 +94,7 @@ class ReceiptDetailViewController: UIViewController {
         
         
         guard let receipt = receipt,
-            let date = receipt.date,
+            let date = receipt.dateOfTransaction,
             let imageURL = receipt.imageURL else {
                 
                 nameTextField.isEnabled = true
@@ -110,7 +113,7 @@ class ReceiptDetailViewController: UIViewController {
         nameTextField.text = receipt.merchant
         dateTextField.text = dateFormatter.string(from: date)
         categoryTextField.text = receipt.category
-        amountTextField.text = String(receipt.amount)
+        amountTextField.text = String(receipt.amountSpent)
         pictureImageView.image = UIImage(named: imageURL)
         
         nameTextField.isEnabled = false
