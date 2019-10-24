@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "257"
             endingLineNumber = "257"
-            landmarkName = "createReceipt(date:amount:category:merchant:receiptDescription:imageURL:context:)"
+            landmarkName = "deleteReceiptFromServer(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -128,8 +128,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "259"
             endingLineNumber = "259"
-            landmarkName = "createReceipt(date:amount:category:merchant:receiptDescription:imageURL:context:)"
-            landmarkType = "7">
+            landmarkName = "ReceiptController"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "AC017F19-6801-4358-ADCA-20D794CCC47C - dfb25a0e83d84a04"
@@ -176,8 +176,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
-            landmarkName = "addNewReceiptToServer(receipt:completion:)"
-            landmarkType = "7">
+            landmarkName = "ReceiptController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
