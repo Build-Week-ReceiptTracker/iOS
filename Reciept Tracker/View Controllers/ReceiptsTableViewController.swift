@@ -25,26 +25,15 @@ enum SortingType: String, CaseIterable {
 
 class ReceiptsTableViewController: UITableViewController {
     
-    
-//    func imageUpload() {
-//        let config = CLDConfiguration(cloudName: "iosdevlambda", secure: true) //https
-//        let cloudinary = CLDCloudinary(configuration: config)
-//        
-//        cloudinary.createUploader().upload(data: <#T##Data#>, uploadPreset: <#T##String#>)
-//        
-//        //let param = CLDUploadRequestParams().setUploadPreset(<#T##uploadPreset: String##String#>)
-//        
-//    }
-   
-    
     var receiptController = ReceiptController()
     var logInController = LogInController()
     
     @IBOutlet weak var sortingTypeSegmentedControl: UISegmentedControl!
+    
     var sortType: SortingType = .merchant
    // var sortOption: SortingOption = .ascending
 
-    var receipts: [ReceiptRepresentation] = []
+   // var receipts: [ReceiptRepresentation] = []
     
     lazy var fetchedResultsController: NSFetchedResultsController<Receipt> = {
 
@@ -74,8 +63,24 @@ class ReceiptsTableViewController: UITableViewController {
 //        tableView.reloadData()
 //    }
     @IBAction func sortingTypeSegControlChanged(_ sender: UISegmentedControl) {
+        let index = sortingTypeSegmentedControl.selectedSegmentIndex
         
+        switch index {
+        case 0 :
+            sortType = .merchant
+        case 1:
+            sortType = .category
+        case 2:
+            sortType = .amount
+        case 3:
+            sortType = .date
+        default:
+            sortType = .merchant
+        }
         
+//        receiptController.searchForReceipts(with: sortType) { (error) in
+//            <#code#>
+//        }
     }
     
     //MARK: Searching with Search Term
@@ -119,11 +124,7 @@ class ReceiptsTableViewController: UITableViewController {
 //        }
     }
     
-    
-    func searchReceipts(with searchTerm: String) -> [ReceiptRepresentation] {
-        return receipts
-    }
-    
+ 
     // MARK: - Segue to Login page
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -132,13 +133,21 @@ class ReceiptsTableViewController: UITableViewController {
             performSegue(withIdentifier: "LoginSegue", sender: self)
             
         } else {
+            receiptController.fetchReceiptsFromServer { (error) in
+                if let error = error {
+                    NSLog("Error fetching : \(error)")
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            }
             
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     // MARK: - Table view data source
@@ -149,15 +158,14 @@ class ReceiptsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return receipts.count
+        return receiptController.receipts.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as? ReceiptTableViewCell else { return UITableViewCell() }
         
-        //TODO: Set the receipt that will be used for the cell (Recipt, not ReceiptRepresentation)
-        //cell.receipt = receipts[indexPath.row].
+        cell.receiptRepresentation = receiptController.receipts[indexPath.row]
         
         return cell
     }

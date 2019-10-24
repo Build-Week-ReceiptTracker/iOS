@@ -15,14 +15,14 @@ class ReceiptTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     
     // Properties
-    var receipt: Receipt? {
+    var receiptRepresentation: ReceiptRepresentation? {
         didSet {
             updateViews()
         }
     }
     
     func updateViews() {
-        guard let receipt = receipt else { return }
+        guard let receipt = receiptRepresentation else { return }
         
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
@@ -32,7 +32,7 @@ class ReceiptTableViewCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yy"
         
-        merchantLabel.text = formatter.string(from: receipt.dateOfTransaction!)
+        merchantLabel.text = formatter.string(from: receipt.dateOfTransaction)
         
         
         priceLabel.text = currencyFormatter.string(for: receipt.amountSpent)

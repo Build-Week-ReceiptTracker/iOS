@@ -15,7 +15,8 @@ extension Receipt {
         
         guard let dateOfTransaction = dateOfTransaction,
             let category = category,
-            let merchant = merchant else { return nil }
+            let merchant = merchant,
+            let amountSpent = amountSpent else { return nil }
         
         return ReceiptRepresentation(id: id, dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, description: description)
     }
@@ -24,13 +25,14 @@ extension Receipt {
         guard let dateOfTransaction = dateOfTransaction,
                    let category = category,
                    let merchant = merchant,
-                    let username = username else { return nil }
+                    let username = username,
+                    let amountSpent = amountSpent else { return nil }
         
         return PostReceiptRepresentation(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, description: description)
     }
     
     // Full initializer
-    @discardableResult convenience init(id: Int64?, dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String,  imageURL: String?, username: String?, receiptDescription: String?, context: NSManagedObjectContext) {
+    @discardableResult convenience init(id: Int64?, dateOfTransaction: Date, amountSpent: String, category: String, merchant: String,  imageURL: String?, username: String?, receiptDescription: String?, context: NSManagedObjectContext) {
         self.init(context: context)
         self.id = id ?? -1
         self.dateOfTransaction = dateOfTransaction
@@ -43,7 +45,7 @@ extension Receipt {
     }
     
     // POST, PUT initializer
-    @discardableResult convenience init(dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String,  imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
+    @discardableResult convenience init(dateOfTransaction: Date, amountSpent: String, category: String, merchant: String,  imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
         self.init(context: context)
         self.dateOfTransaction = dateOfTransaction
         self.amountSpent = amountSpent
@@ -55,7 +57,7 @@ extension Receipt {
     }
     
     // GET initializer
-    @discardableResult convenience init(id: Int64?, dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String, imageURL: String?, receiptDescription: String?, context: NSManagedObjectContext) {
+    @discardableResult convenience init(id: Int64?, dateOfTransaction: Date, amountSpent: String, category: String, merchant: String, imageURL: String?, receiptDescription: String?, context: NSManagedObjectContext) {
         self.init(context: context)
         self.id = id ?? -1
         self.dateOfTransaction = dateOfTransaction
