@@ -32,11 +32,8 @@ class ReceiptController {
     private let baseURL = URL(string: "https://api-receipt-tracker.herokuapp.com/api")!
     
     var bearer: Bearer?
-<<<<<<< HEAD
     var receiptID: Int16?
-=======
     var searchedReceipts: [ReceiptRepresentation] = []
->>>>>>> develop
     
     init() {
         fetchReceiptsFromServer()
@@ -155,14 +152,9 @@ class ReceiptController {
             }
             
             do {
-<<<<<<< HEAD
                 let id = try JSONDecoder().decode(ReceiptID.self, from: data)
                 self.receiptID = id.receiptID
                 completion(nil)
-=======
-                let receiptID = try JSONDecoder().decode(ReceiptID.self, from: data)
-                // receiptRepresentation.id = receiptID.receiptID
->>>>>>> develop
             } catch {
                 NSLog("Could not decode receipt ID: \(error)")
                 completion(.badDecode)
@@ -259,15 +251,8 @@ class ReceiptController {
     
     
     // MARK: - Core Data CRUD Methods
-<<<<<<< HEAD
+
     func createReceipt(date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
-=======
-    
-    // Create
-    func createReceipt(date: Date, price: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, id: Int16, context: NSManagedObjectContext) {
-        
-        let receipt = Receipt(date: date, amount: price, category: category, merchant: merchant, receiptDescription: receiptDescription, imageURL: imageURL, id: id, context: context)
->>>>>>> develop
         
         let receipt = Receipt(date: date, amount: amount, category: category, merchant: merchant, receiptDescription: receiptDescription, imageURL: imageURL, context: context)
 
