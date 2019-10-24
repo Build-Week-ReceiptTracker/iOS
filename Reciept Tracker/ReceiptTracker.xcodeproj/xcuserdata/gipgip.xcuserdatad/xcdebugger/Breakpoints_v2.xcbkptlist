@@ -18,6 +18,58 @@
             endingLineNumber = "153"
             landmarkName = "addNewReceiptToServer(postReceiptRepresentation:completion:)"
             landmarkType = "7">
+<<<<<<< HEAD
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC017F19-6801-4358-ADCA-20D794CCC47C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Model Controllers/ReceiptController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "createReceipt(dateOfTransaction:amountSpent:category:merchant:imageURL:username:receiptDescription:context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AC017F19-6801-4358-ADCA-20D794CCC47C - c61bd74eb0a83b9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReceiptTracker.ReceiptController.createReceipt(dateOfTransaction: Foundation.Date, amountSpent: Swift.Double, category: Swift.String, merchant: Swift.String, imageURL: Swift.Optional&lt;Swift.String&gt;, username: Swift.String, receiptDescription: Swift.Optional&lt;Swift.String&gt;, context: __C.NSManagedObjectContext) -&gt; ()"
+                  moduleName = "ReceiptTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gipgip/Development/Build%20Week%202/iOS/Reciept%20Tracker/Model%20Controllers/ReceiptController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "259"
+                  endingLineNumber = "259"
+                  offsetFromSymbolStart = "926">
+               </Location>
+               <Location
+                  uuid = "AC017F19-6801-4358-ADCA-20D794CCC47C - 428cc5eb0bc177f7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;ReceiptTracker.NetworkingError&gt;) -&gt; () in ReceiptTracker.ReceiptController.createReceipt(dateOfTransaction: Foundation.Date, amountSpent: Swift.Double, category: Swift.String, merchant: Swift.String, imageURL: Swift.Optional&lt;Swift.String&gt;, username: Swift.String, receiptDescription: Swift.Optional&lt;Swift.String&gt;, context: __C.NSManagedObjectContext) -&gt; ()"
+                  moduleName = "ReceiptTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gipgip/Development/Build%20Week%202/iOS/Reciept%20Tracker/Model%20Controllers/ReceiptController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "153">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+=======
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -36,5 +88,6 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+>>>>>>> johnDev
    </Breakpoints>
 </Bucket>

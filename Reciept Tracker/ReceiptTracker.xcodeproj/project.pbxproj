@@ -25,6 +25,7 @@
 		FA0354E4235E79FC0046047F /* ReceiptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E3235E79FC0046047F /* ReceiptDetailViewController.swift */; };
 		FA0354E8235E7BAA0046047F /* ReceiptLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E7235E7BAA0046047F /* ReceiptLogInViewController.swift */; };
 		FA0354EA235F63EF0046047F /* ReceiptRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0354E9235F63EF0046047F /* ReceiptRepresentation.swift */; };
+		FAACD85E23620724005DFC08 /* ReceiptContrlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACD85D23620724005DFC08 /* ReceiptContrlExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		FA0354E3235E79FC0046047F /* ReceiptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailViewController.swift; sourceTree = "<group>"; };
 		FA0354E7235E7BAA0046047F /* ReceiptLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptLogInViewController.swift; sourceTree = "<group>"; };
 		FA0354E9235F63EF0046047F /* ReceiptRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptRepresentation.swift; sourceTree = "<group>"; };
+		FAACD85D23620724005DFC08 /* ReceiptContrlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptContrlExtension.swift; sourceTree = "<group>"; };
 		FD5ADDCD9ECCA8A9D4B48FE1 /* Pods-ReceiptTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptTracker.debug.xcconfig"; path = "Target Support Files/Pods-ReceiptTracker/Pods-ReceiptTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 			children = (
 				A69EF72D235E56B8005C165D /* ReceiptController.swift */,
 				FA0354D9235E60C80046047F /* LogInController.swift */,
+				FAACD85D23620724005DFC08 /* ReceiptContrlExtension.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				FA0354DC235E62B60046047F /* Bearer.swift in Sources */,
 				A69EF72E235E56B8005C165D /* ReceiptController.swift in Sources */,
 				FA0354C1235E1D3F0046047F /* AppDelegate.swift in Sources */,
+				FAACD85E23620724005DFC08 /* ReceiptContrlExtension.swift in Sources */,
 				FA0354DA235E60C80046047F /* LogInController.swift in Sources */,
 				FA0354E0235E78930046047F /* ReceiptTableViewCell.swift in Sources */,
 				FA0354E8235E7BAA0046047F /* ReceiptLogInViewController.swift in Sources */,

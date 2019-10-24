@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cloudinary
 
 class ReceiptDetailViewController: UIViewController {
     
@@ -22,7 +23,11 @@ class ReceiptDetailViewController: UIViewController {
     var logInController: LogInController?
     let dateFormatter = DateFormatter()
     let imagePicker = UIImagePickerController()
-    var jpegImage: String = ""
+//    var jpegImage: String = ""
+    
+    //TODO: Pass them to the file that manages the image uploading
+    var cloudinaryURL =  "https://api.cloudinary.com/v1_1/iosdevlambda"
+    var cloudinaryUploadPresent = "z2og3e0q"
     
 
     override func viewDidLoad() {
@@ -148,14 +153,15 @@ UINavigationControllerDelegate {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             pictureImageView.contentMode = .scaleAspectFit
             pictureImageView.image = pickedImage
+            imageUpload(image: pickedImage)
             
-            
-            // Encoding the image to jpegData
-            let jpegCompressionQuality: CGFloat = 0.9
-            
-            if let jpegImage = pickedImage.jpegData(compressionQuality: jpegCompressionQuality)?.base64EncodedString() {
-                self.jpegImage = jpegImage
-            }
+//
+//            // Encoding the image to jpegData
+//            let jpegCompressionQuality: CGFloat = 0.9
+//
+//            if let jpegImage = pickedImage.jpegData(compressionQuality: jpegCompressionQuality)?.base64EncodedString() {
+//                self.jpegImage = jpegImage
+//            }
         }
         dismiss(animated: true, completion: nil)
     }
@@ -163,5 +169,15 @@ UINavigationControllerDelegate {
     // If Choose to cancel selecting Image from picker
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func imageUpload(image: UIImage) {
+        let config = CLDConfiguration(cloudName: "iosdevlambda", secure: true) //https
+        let cloudinary = CLDCloudinary(configuration: config)
+        
+        let imageData = image.pngData()
+        guard let image = imageData else { return }
+        
+        cloudinary.createUploader().upload(data: image, uploadPreset: cloudinaryUploadPresent)
     }
 }
