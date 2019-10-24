@@ -77,6 +77,7 @@ class ReceiptController {
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
+            print(String(data: data, encoding: .utf8))
             do {
                 let receipts = try decoder.decode([ReceiptRepresentation].self, from: data)
                 self.updateReceipts(with: receipts)
@@ -185,7 +186,7 @@ class ReceiptController {
                 
                 // Only fetch the receipts with the id's that are in this identifiersToFetch array
                 //"identifiersToFetch.contains(id)"
-                fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
+                fetchRequest.predicate = NSPredicate(format: "id IN %@", identifiersToFetch)
                 
                 let existingReceipts = try context.fetch(fetchRequest)
                 
@@ -246,7 +247,7 @@ class ReceiptController {
     
     // MARK: - Core Data CRUD Methods
 
-    func createReceipt(dateOfTransaction: Date, amountSpent: String, category: String, merchant: String, imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
+    func createReceipt(dateOfTransaction: String, amountSpent: String, category: String, merchant: String, imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
         
 //        let receipt = Receipt(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, receiptDescription: receiptDescription, context: context)
 
@@ -263,7 +264,7 @@ class ReceiptController {
 
     
     //Update
-    func updateReceipt(receipt: Receipt, date: Date, amount: String, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
+    func updateReceipt(receipt: Receipt, date: String, amount: String, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
         
         receipt.dateOfTransaction = date
         receipt.amountSpent = amount
