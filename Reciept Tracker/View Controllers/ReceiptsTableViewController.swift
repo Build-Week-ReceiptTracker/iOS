@@ -27,6 +27,7 @@ class ReceiptsTableViewController: UITableViewController {
     var receiptController = ReceiptController()
     var logInController = LogInController()
     
+    @IBOutlet weak var sortingTypeSegmentedControl: UISegmentedControl!
     var sortType: SortingType = .merchant
    // var sortOption: SortingOption = .ascending
 
@@ -59,6 +60,8 @@ class ReceiptsTableViewController: UITableViewController {
 //        sortOption = SortingOption.allCases[sender.selectedSegmentIndex]
 //        tableView.reloadData()
 //    }
+    @IBAction func sortingTypeSegControlChanged(_ sender: UISegmentedControl) {
+    }
     
     //MARK: Searching with Search Term
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

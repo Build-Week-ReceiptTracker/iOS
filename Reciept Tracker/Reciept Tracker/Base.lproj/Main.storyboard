@@ -30,6 +30,9 @@
                                                 <segment title="Amount"/>
                                                 <segment title="Date"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="sortingTypeSegControlChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="P4e-9X-5bW"/>
+                                            </connections>
                                         </segmentedControl>
                                         <searchBar contentMode="redraw" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqv-cB-6BS">
                                             <rect key="frame" x="0.0" y="34" width="414" height="56"/>
@@ -97,6 +100,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="sortingTypeSegmentedControl" destination="tOM-Nv-ReZ" id="BZ2-Yb-mWv"/>
                         <segue destination="Mhs-gW-Ga2" kind="presentation" identifier="LoginSegue" id="4oT-Q4-LVP"/>
                     </connections>
                 </tableViewController>
