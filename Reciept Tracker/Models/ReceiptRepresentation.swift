@@ -55,6 +55,6 @@ struct ReceiptID: Codable {
     let receiptID: Int64
 }
 
-struct ReseiptsSerched: Codable {
+struct ReceiptsSearched: Codable {
     let results: [ReceiptRepresentation]
 }

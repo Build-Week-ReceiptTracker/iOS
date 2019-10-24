@@ -291,55 +291,47 @@ class ReceiptController {
     }
     
     
-    func searchForReceipt(searchID: String, completion: @escaping (Result<ReceiptRepresentation, NetworkingError>) -> Void) {
+    func searchForReceipts(with searchTerm: String, completion: @escaping (NetworkingError?) -> Void) {
         
         guard let bearer = bearer else {
-            completion(.failure(.noBearer))
+            completion(.noBearer)
             return
         }
         
         let requestURL = baseURL
             .appendingPathComponent("auth")
             .appendingPathComponent("receipts")
-            .appendingPathComponent(String(searchID))
+            .appendingPathComponent(searchTerm)
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
-        
+            
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let error = error {
-                NSLog("Error fetching receipt details: \(error)")
-                completion(.failure(.serverError(error)))
-            }
-            
-            if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
-                completion(.failure(.unexpectedStatusCode(response.statusCode)))
+                NSLog("Error fetching receipt: \(error)")
+                completion(.serverError(error))
                 return
             }
-            
+        
             guard let data = data else {
-                completion(.failure(.noData))
+                NSLog("No data returned from receipt search")
+                completion(.noData)
                 return
             }
+            
+            let decoder = JSONDecoder()
             
             do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .secondsSince1970
+                let receiptsSearched = try decoder.decode(ReceiptsSearched.self, from: data).results
                 
-                let receipt = try decoder.decode(ReceiptRepresentation.self, from: data)
-                
-                completion(.success(receipt))
-                
+                self.searchedReceipts = receiptsSearched
             } catch {
-                NSLog("Error decoding Receipt: \(error)")
-                completion(.failure(.badDecode))
+                NSLog("Unable to decode data into ReceiptsSearched: \(error)")
             }
+            
+            completion(.badDecode)
         }.resume()
     }
-    
-    //let params = 
-    
 }
