@@ -33,7 +33,8 @@ class ReceiptController {
     
     var bearer: Bearer?
     var receiptID: Int64?
-    var searchedReceipts: [ReceiptRepresentation] = []
+    var receipts: [ReceiptRepresentation] = []
+    
     
     init() {
         fetchReceiptsFromServer()
@@ -74,11 +75,12 @@ class ReceiptController {
                 return
             }
             
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
                 let receipts = try decoder.decode([ReceiptRepresentation].self, from: data)
                 self.updateReceipts(with: receipts)
+                self.receipts = receipts
             } catch {
                 NSLog("Error decoding ReceiptRepresentation: \(error)")
                 completion(.badDecode)
@@ -244,7 +246,7 @@ class ReceiptController {
     
     // MARK: - Core Data CRUD Methods
 
-    func createReceipt(dateOfTransaction: Date, amountSpent: Double, category: String, merchant: String, imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
+    func createReceipt(dateOfTransaction: Date, amountSpent: String, category: String, merchant: String, imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
         
 //        let receipt = Receipt(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, receiptDescription: receiptDescription, context: context)
 
@@ -261,7 +263,7 @@ class ReceiptController {
 
     
     //Update
-    func updateReceipt(receipt: Receipt, date: Date, amount: Double, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
+    func updateReceipt(receipt: Receipt, date: Date, amount: String, category: String, merchant: String, receiptDescription: String?, imageURL: String?, context: NSManagedObjectContext) {
         
         receipt.dateOfTransaction = date
         receipt.amountSpent = amount
@@ -295,9 +297,12 @@ class ReceiptController {
             return
         }
         
+        //https://api-receipt-tracker.herokuapp.com/api/auth/receipts/category
+        
         let requestURL = baseURL
             .appendingPathComponent("auth")
             .appendingPathComponent("receipts")
+            //.appendingPathComponent(sortType.rawValue)
             .appendingPathComponent(searchTerm)
         
         var request = URLRequest(url: requestURL)
@@ -323,7 +328,7 @@ class ReceiptController {
             do {
                 let receiptsSearched = try decoder.decode(ReceiptsSearched.self, from: data).results
                 
-                self.searchedReceipts = receiptsSearched
+                self.receipts = receiptsSearched
             } catch {
                 NSLog("Unable to decode data into ReceiptsSearched: \(error)")
             }
