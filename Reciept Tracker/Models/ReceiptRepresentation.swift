@@ -12,7 +12,7 @@ import Foundation
 struct ReceiptRepresentation: Codable {
     var id: Int64?
     let dateOfTransaction: Date
-    let amountSpent: Double
+    let amountSpent: String
     let category: String
     let merchant: String
     let imageURL: String?
@@ -33,7 +33,7 @@ struct ReceiptRepresentation: Codable {
 
 struct PostReceiptRepresentation: Encodable {
     let dateOfTransaction: Date
-    let amountSpent: Double
+    let amountSpent: String
     let category: String
     let merchant: String
     let imageURL: String?
