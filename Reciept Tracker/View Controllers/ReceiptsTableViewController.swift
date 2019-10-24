@@ -176,6 +176,7 @@ class ReceiptsTableViewController: UITableViewController {
         } else if segue.identifier == "AddReceiptSegue" {
             if let detailVC = segue.destination as? ReceiptDetailViewController {
                 detailVC.receiptController = receiptController
+                detailVC.logInController = logInController
             }
         } else if segue.identifier == "ShowDetailsSegue" {
             if let detailVC = segue.destination as? ReceiptDetailViewController,
