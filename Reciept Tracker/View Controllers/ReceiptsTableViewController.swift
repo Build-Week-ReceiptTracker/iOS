@@ -205,7 +205,7 @@ class ReceiptsTableViewController: UITableViewController {
             if let detailVC = segue.destination as? ReceiptDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow {
                 detailVC.receiptController = receiptController
-                detailVC.receipt = fetchedResultsController.object(at: indexPath)
+                detailVC.receipt = Receipt(receiptRepresentation: receiptController.receipts[indexPath.row], context: CoreDataStack.shared.mainContext)
                 detailVC.logInController = logInController
             }
         }
