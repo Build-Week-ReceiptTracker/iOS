@@ -17,14 +17,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="sectionIndexBackgroundColor" red="0.94696706529999997" green="0.87363544881095889" blue="0.79975634809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="frV-Xb-6fp">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zp5-3t-pks">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                     <subviews>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tOM-Nv-ReZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tOM-Nv-ReZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
                                             <segments>
                                                 <segment title="Merchant"/>
                                                 <segment title="Category"/>
@@ -35,10 +35,6 @@
                                                 <action selector="sortTypeValueChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="qH4-nV-GVb"/>
                                             </connections>
                                         </segmentedControl>
-                                        <searchBar contentMode="redraw" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqv-cB-6BS">
-                                            <rect key="frame" x="0.0" y="34" width="414" height="56"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </searchBar>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -52,7 +48,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceiptCell" textLabel="QvN-zj-Nci" detailTextLabel="SeE-2S-4gc" style="IBUITableViewCellStyleValue1" id="kGw-Cn-j27" customClass="ReceiptTableViewCell" customModule="ReceiptTracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="118" width="414" height="47.5"/>
+                                <rect key="frame" x="0.0" y="73" width="414" height="47.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kGw-Cn-j27" id="enm-g8-oBG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="47.5"/>
@@ -93,7 +89,6 @@
                         <barButtonItem title="Sort" id="f7j-vb-FG2"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="History" id="c2X-hf-jNk">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="sZ8-Se-Qmq"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EDK-j4-ynk">
                             <connections>
                                 <segue destination="Ydg-ei-wDN" kind="show" identifier="AddReceiptSegue" id="JyX-D1-gGz"/>
