@@ -32,7 +32,7 @@
                                                 <segment title="Date"/>
                                             </segments>
                                             <connections>
-                                                <action selector="sortingTypeSegControlChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="P4e-9X-5bW"/>
+                                                <action selector="sortTypeValueChanged:" destination="Bk1-7K-fIe" eventType="valueChanged" id="qH4-nV-GVb"/>
                                             </connections>
                                         </segmentedControl>
                                         <searchBar contentMode="redraw" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqv-cB-6BS">
@@ -159,7 +159,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00/00/0000" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcd-Qg-Xyb">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00/00/00" borderStyle="roundedRect" placeholder="MM/DD/YY" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcd-Qg-Xyb">
                                         <rect key="frame" x="0.0" y="215" width="334" height="34"/>
                                         <color key="backgroundColor" red="0.94696706529999997" green="0.87363544879999999" blue="0.79975634809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
