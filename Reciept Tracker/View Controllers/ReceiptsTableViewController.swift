@@ -26,8 +26,6 @@ class ReceiptsTableViewController: UITableViewController {
     @IBOutlet weak var sortingTypeSegmentedControl: UISegmentedControl!
     
     var sortType: SortingType = .merchant
-   // var sortOption: SortingOption = .ascending
-    
 //    var receipts: [ReceiptRepresentation] = []
    
     
@@ -76,34 +74,9 @@ class ReceiptsTableViewController: UITableViewController {
 //            sortType = .merchant
 //            updateReceiptsToDisplay()
 //        }
-//
+
 //    }
 //
-    //MARK: Searching with Search Term
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        guard let searchTerm = searchBar.text else { return }
-//
-//        let searchedReceipts = receipts.filter{ $0.merchant == searchTerm }
-//        receipts = searchedReceipts
-//        tableView.reloadData()
-//
-        
-//        switch sortType {
-//
-//        case .merchant:
-//            <#code#>
-//        case .amount:
-//            <#code#>
-//        case .date:
-//            <#code#>
-//        case .category:
-//            <#code#>
-//        @unknown default:
-//            <#code#>
-//        }
-//
-//
-        
 //        receiptController.searchForReceipts(with: searchTerm) { (error) in
 //
 //            guard error == nil else { return }
@@ -143,6 +116,9 @@ class ReceiptsTableViewController: UITableViewController {
             performSegue(withIdentifier: "LoginSegue", sender: self)
             
         } else {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
 //            receiptController.fetchReceiptsFromServer { (error) in
 //                if let error = error {
 //                    NSLog("Error fetching : \(error)")
