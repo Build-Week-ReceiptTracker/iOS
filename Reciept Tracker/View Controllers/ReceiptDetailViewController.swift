@@ -58,7 +58,12 @@ class ReceiptDetailViewController: UIViewController {
             //TODO: Call method(s) to create new receipt
             receiptController?.createReceipt(dateOfTransaction: date, amountSpent: amountString, category: category, merchant: merchant, imageURL: nil, username: username, receiptDescription: nil, context: CoreDataStack.shared.mainContext)
             
-        } else { return }
+        } else {
+            // call update here
+            
+            return
+            
+        }
         navigationController?.popViewController(animated: true)
     }
     
@@ -95,9 +100,6 @@ class ReceiptDetailViewController: UIViewController {
     }
     
     func updateViews() {
-        
-        
-        
         guard let receipt = receipt,
             let amountSpent = receipt.amountSpent,
             let date = receipt.dateOfTransaction,
