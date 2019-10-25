@@ -65,8 +65,6 @@ class ReceiptDetailViewController: UIViewController {
                 let merchant = receipt.merchant else { return }
             // call update here
             receiptController?.updateReceipt(receipt: receipt, date: date, amount: amount, category: category, merchant: merchant, receiptDescription: receipt.receiptDescription, imageURL: receipt.imageURL, context: CoreDataStack.shared.mainContext)
-            return
-            
         }
         navigationController?.popViewController(animated: true)
     }
@@ -128,18 +126,6 @@ class ReceiptDetailViewController: UIViewController {
 //        categoryTextField.isEnabled = false
 //        amountTextField.isEnabled = false
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-
     
 }
 

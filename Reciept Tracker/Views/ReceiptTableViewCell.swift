@@ -15,27 +15,32 @@ class ReceiptTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     
     // Properties
-    var receiptRepresentation: ReceiptRepresentation? {
+    //var receiptRepresentation: ReceiptRepresentation? {
+    var sortType: SortingType?
+    var receipt: Receipt? {
         didSet {
             updateViews()
         }
     }
     
     func updateViews() {
-        guard let receipt = receiptRepresentation else { return }
-        
+        guard let receipt = receipt, let sortType = sortType else { return }
+
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = .currency
         currencyFormatter.locale = Locale.current
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yy"
-        
-        //merchantLabel.text = formatter.string(from: receipt.dateOfTransaction)
-        merchantLabel.text = receipt.merchant
-        
-        //priceLabel.text = currencyFormatter.string(for: receipt.amountSpent)
+
+        if sortType != .merchant {
+            merchantLabel.text = receipt.merchant
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yy"
+
+            merchantLabel.text = receipt.dateOfTransaction
+        }
+
         priceLabel.text = receipt.amountSpent
+
     }
 }

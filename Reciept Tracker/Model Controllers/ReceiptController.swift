@@ -114,15 +114,12 @@ class ReceiptController {
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("\(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
         request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
-        print(bearer.token)
-        
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         
         do {
             request.httpBody = try encoder.encode(postReceiptRepresentation)
-            print(String(data: request.httpBody!, encoding: .utf8))
         } catch {
             NSLog("Error encoding receipt representation: \(error)")
             completion(.badEncode)
@@ -162,32 +159,81 @@ class ReceiptController {
 
     }
     
+//    func updateReceiptToServer(receipt: Receipt, completion: @escaping (NetworkingError?) -> Void = { _ in }) {
+//        
+//        guard let bearer = bearer else {
+//            completion(.noBearer)
+//            return
+//        }
+//        
+//        let requestURL = baseURL
+//            .appendingPathComponent("auth")
+//            .appendingPathComponent("receipts")
+//            .appendingPathComponent(String(receipt.id))
+//        
+//        var request = URLRequest(url: requestURL)
+//        request.httpMethod = HTTPMethod.post.rawValue
+//        request.setValue("\(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+//        request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
+//        
+//        let encoder = JSONEncoder()
+//        encoder.dateEncodingStrategy = .iso8601
+//        
+//        do {
+//            request.httpBody = try encoder.encode(ReceiptRepresentation)
+//        } catch {
+//            NSLog("Error encoding receipt representation: \(error)")
+//            completion(.badEncode)
+//            return
+//        }
+//        
+//        URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            
+//            if let error = error {
+//                NSLog("Error PUTting receipt: \(error)")
+//                completion(.serverError(error))
+//            }
+//            
+//            if let response = response as? HTTPURLResponse,
+//                response.statusCode != 201 {
+//                NSLog("Unexpected status code: \(response.statusCode)")
+//                completion(.unexpectedStatusCode(response.statusCode))
+//                return
+//            }
+//            
+//            guard let data = data else {
+//                NSLog("No id returned after adding a new receipt")
+//                completion(.noData)
+//                return
+//            }
+//            
+//            do {
+//                let id = try JSONDecoder().decode(ReceiptID.self, from: data)
+//                self.receiptID = Int64(id.receiptID)
+//                completion(nil)
+//            } catch {
+//                NSLog("Could not decode receipt ID: \(error)")
+//                completion(.badDecode)
+//            }
+//
+//        }.resume()
+//
+//    }
     
     
     // UPDATE
     func updateReceipts(with representations: [ReceiptRepresentation]) {
         
-        // Which representations do we already have in Core Data?
-        //Creating an Array of the representation's identifiers
         let identifiersToFetch = representations.map({ $0.id })
-        
         // [[id]: [ReceiptRepresentation]]
         let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
-        
-        // Make a mutable copy of the dictionary above
-        
-        // How many receipt (that could need to be created OR updated)
         var receiptsToCreate = representationsByID
         let context = CoreDataStack.shared.container.newBackgroundContext()
         
         context.performAndWait {
             
             do {
-                
                 let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
-                
-                // Only fetch the receipts with the id's that are in this identifiersToFetch array
-                //"identifiersToFetch.contains(id)"
                 fetchRequest.predicate = NSPredicate(format: "id IN %@", identifiersToFetch)
                 
                 let existingReceipts = try context.fetch(fetchRequest)
@@ -224,24 +270,33 @@ class ReceiptController {
 
     
     //MARK: DELETE
-    func deleteReceiptFromServer(_ receipt: Receipt, completion: @escaping () -> Void = { }) {
+    func deleteReceiptFromServer(_ receipt: Receipt, completion: @escaping (NetworkingError?) -> Void = { _ in }) {
         
+        guard let bearer = bearer else {
+            completion(.noBearer)
+            return
+        }
         let id = receipt.id
         
         let requestURL = baseURL
+            .appendingPathComponent("auth")
+            .appendingPathComponent("receipts")
             .appendingPathComponent(String(id))
+            .appendingPathComponent("del")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
+        request.setValue("\(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
         
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
             
             if let error = error {
                 NSLog("Error deleting receipt \(id) from server: \(error)")
-                completion()
+                completion(.serverError(error))
                 return
             }
-            completion()
+            completion(nil)
         }.resume()
     }
     
@@ -284,11 +339,10 @@ class ReceiptController {
     //Delete
     func deleteReceipt(receipt: Receipt, context: NSManagedObjectContext) {
         context.performAndWait {
-            
-            // TODO: DELETE from database
-            
-            context.delete(receipt)
-            CoreDataStack.shared.save(context: context)
+            deleteReceiptFromServer(receipt) { (error) in
+                context.delete(receipt)
+                CoreDataStack.shared.save(context: context)
+            }
         }
     }
     
