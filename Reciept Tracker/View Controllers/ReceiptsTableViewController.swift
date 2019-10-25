@@ -41,7 +41,7 @@ class ReceiptsTableViewController: UITableViewController {
         let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: sortType.rawValue, ascending: true),
-            NSSortDescriptor(key: "dateOfTransaction", ascending: true)
+            //NSSortDescriptor(key: "dateOfTransaction", ascending: true)
         ]
 
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: sortType.rawValue, cacheName: nil)
@@ -83,31 +83,33 @@ class ReceiptsTableViewController: UITableViewController {
             sortType = .merchant
             updateReceiptsToDisplay()
         }
-        
-//        receiptController.searchForReceipts(with: sortType) { (error) in
-//            <#code#>
-//        }
+
     }
     
     //MARK: Searching with Search Term
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else { return }
         
-        switch sortType {
-            
-        case .merchant:
-            <#code#>
-        case .amount:
-            <#code#>
-        case .date:
-            <#code#>
-        case .category:
-            <#code#>
-        @unknown default:
-            <#code#>
-        }
+        let searchedReceipts = receipts.filter{ $0.merchant == searchTerm }
+        receipts = searchedReceipts
+        tableView.reloadData()
         
         
+//        switch sortType {
+//
+//        case .merchant:
+//            <#code#>
+//        case .amount:
+//            <#code#>
+//        case .date:
+//            <#code#>
+//        case .category:
+//            <#code#>
+//        @unknown default:
+//            <#code#>
+//        }
+//
+//
         
 //        receiptController.searchForReceipts(with: searchTerm) { (error) in
 //
@@ -156,9 +158,7 @@ class ReceiptsTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             }
-            
         }
     }
     
@@ -168,9 +168,18 @@ class ReceiptsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return receipts.count
-//    }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        var numOfSections = 1
+        if sortType == .category {
+            numOfSections = fetchedResultsController.sections?.count ?? 1
+            //let sections1 = fetchedResultsController.sections?.count
+            //let sections2 = sections1.filterDuplicates { $0.category === $1.category }
+            //numOfSections = Array(Set<<#Element: Hashable#>>(sectionsArray))
+        } else {
+            numOfSections = 1
+        }
+        return numOfSections
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -190,18 +199,25 @@ class ReceiptsTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let receiptToDelete = Receipt(receiptRepresentation: receipts[indexPath.row], context: CoreDataStack.shared.mainContext)
+            
+            guard let receipt = receiptToDelete else { return }
+            
+            receiptController.deleteReceiptFromServer(receipt)
             //receiptController.deleteReceipt(receipt: fetchedResultsController.object(at: indexPath), context: CoreDataStack.shared.mainContext)
         }
     }
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if sortType != .amount {
-//            return fetchedResultsController.sections?[section].name
-//        } else {
-//            return nil
-//        }
-//    }
-//
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var sectionName = ""
+        if sortType == .category {
+            guard let sectionInfo = fetchedResultsController.sections?[section] else { return nil }
+            
+            sectionName =  sectionInfo.name.capitalized
+        }
+        return sectionName
+    }
+
 
     
     // MARK: - Navigation
@@ -220,8 +236,9 @@ class ReceiptsTableViewController: UITableViewController {
         } else if segue.identifier == "ShowDetailsSegue" {
             if let detailVC = segue.destination as? ReceiptDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow {
-                detailVC.receiptController = receiptController
-                detailVC.receipt = Receipt(receiptRepresentation: receiptController.receipts[indexPath.row], context: CoreDataStack.shared.mainContext)
+                detailVC.receiptController = self.receiptController
+                detailVC.receipt = Receipt(receiptRepresentation: receipts[indexPath.row], context: CoreDataStack.shared.mainContext)
+                //detailVC.receipt = Receipt(receiptRepresentation: receiptController.receipts[indexPath.row], context: CoreDataStack.shared.mainContext)
                 detailVC.logInController = logInController
             }
         }
