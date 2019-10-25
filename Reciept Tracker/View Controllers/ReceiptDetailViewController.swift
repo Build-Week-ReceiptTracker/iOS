@@ -49,7 +49,7 @@ class ReceiptDetailViewController: UIViewController {
                 let amountString = amountTextField.text,
                 let logInController = logInController,
                 let username = logInController.username,
-                // let imageURL = pictureImageView.image,
+                //let imageURL = pictureImageView.image,
                 !merchant.isEmpty,
                 !date.isEmpty,
                 !category.isEmpty else { return }
