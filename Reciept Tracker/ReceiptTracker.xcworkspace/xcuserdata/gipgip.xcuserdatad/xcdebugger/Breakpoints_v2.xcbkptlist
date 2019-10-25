@@ -32,11 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "313"
             endingLineNumber = "313"
-<<<<<<< HEAD
-            landmarkName = "searchForReceipts(with:completion:)"
-=======
             landmarkName = "createReceipt(dateOfTransaction:amountSpent:category:merchant:imageURL:username:receiptDescription:context:)"
->>>>>>> johnDev
             landmarkType = "7">
             <Locations>
                <Location
@@ -93,7 +89,6 @@
          <BreakpointContent
             uuid = "D7614936-D873-4CE2-9FC0-102A69B714AB"
             shouldBeEnabled = "No"
-<<<<<<< HEAD
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "View Controllers/ReceiptsTableViewController.swift"
@@ -101,46 +96,15 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
             endingLineNumber = "207"
-            landmarkName = "ReceiptsTableViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B6A4A198-CA0F-4017-B961-9681BB696773"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "View Controllers/ReceiptDetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "saveButtonTapped(_:)"
-=======
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "View Controllers/ReceiptsTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "tableView(_:commit:forRowAt:)"
->>>>>>> johnDev
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-<<<<<<< HEAD
-            uuid = "5CECDB3F-1203-4164-BFFA-FE223D41BD58"
-            shouldBeEnabled = "No"
-=======
             uuid = "B6A4A198-CA0F-4017-B961-9681BB696773"
             shouldBeEnabled = "Yes"
->>>>>>> johnDev
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "View Controllers/ReceiptDetailViewController.swift"
@@ -164,13 +128,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
             endingLineNumber = "55"
-<<<<<<< HEAD
-            landmarkName = "fetchedResultsController"
-            landmarkType = "24">
-=======
             landmarkName = "sortTypeValueChanged(_:)"
             landmarkType = "7">
->>>>>>> johnDev
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -185,13 +144,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
             endingLineNumber = "38"
-<<<<<<< HEAD
-            landmarkName = "ReceiptsTableViewController"
-            landmarkType = "3">
-=======
             landmarkName = "fetchedResultsController"
             landmarkType = "24">
->>>>>>> johnDev
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,13 +160,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
             endingLineNumber = "219"
-<<<<<<< HEAD
-            landmarkName = "ReceiptsTableViewController"
-            landmarkType = "3">
-=======
-            landmarkName = "tableView(_:titleForHeaderInSection:)"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
->>>>>>> johnDev
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
