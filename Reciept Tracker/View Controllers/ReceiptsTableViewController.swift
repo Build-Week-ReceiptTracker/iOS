@@ -172,9 +172,6 @@ class ReceiptsTableViewController: UITableViewController {
         var numOfSections = 1
         if sortType == .category {
             numOfSections = fetchedResultsController.sections?.count ?? 1
-            //let sections1 = fetchedResultsController.sections?.count
-            //let sections2 = sections1.filterDuplicates { $0.category === $1.category }
-            //numOfSections = Array(Set<<#Element: Hashable#>>(sectionsArray))
         } else {
             numOfSections = 1
         }

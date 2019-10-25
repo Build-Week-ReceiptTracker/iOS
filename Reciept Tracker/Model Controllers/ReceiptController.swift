@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Cloudinary
 
 enum HTTPMethod: String {
     case get = "GET"
@@ -34,6 +35,7 @@ class ReceiptController {
     var bearer: Bearer?
     var receiptID: Int64?
     var receipts: [ReceiptRepresentation] = []
+            
     
     
     init() {
