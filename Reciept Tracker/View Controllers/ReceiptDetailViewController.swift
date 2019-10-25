@@ -24,6 +24,7 @@ class ReceiptDetailViewController: UIViewController {
     let dateFormatter = DateFormatter()
     let imagePicker = UIImagePickerController()
 //    var jpegImage: String = ""
+    let config = CLDConfiguration(cloudName: "iosdevlambda", secure: true) //https
     
     //TODO: Pass them to the file that manages the image uploading
     var cloudinaryURL =  "https://api.cloudinary.com/v1_1/iosdevlambda"
@@ -44,10 +45,8 @@ class ReceiptDetailViewController: UIViewController {
         if receipt == nil {
             guard let merchant = nameTextField.text,
                 let date = dateTextField.text,
-                let dateFormatted = dateFormatter.date(from: date),
                 let category = categoryTextField.text,
                 let amountString = amountTextField.text,
-                let amount = Double(amountString),
                 let logInController = logInController,
                 let username = logInController.username,
                 // let imageURL = pictureImageView.image,
@@ -59,8 +58,13 @@ class ReceiptDetailViewController: UIViewController {
             receiptController?.createReceipt(dateOfTransaction: date, amountSpent: amountString, category: category, merchant: merchant, imageURL: nil, username: username, receiptDescription: nil, context: CoreDataStack.shared.mainContext)
             
         } else {
+            guard let receipt = receipt,
+                let date = receipt.dateOfTransaction,
+                let amount = receipt.amountSpent,
+                let category = receipt.category,
+                let merchant = receipt.merchant else { return }
             // call update here
-            
+            receiptController?.updateReceipt(receipt: receipt, date: date, amount: amount, category: category, merchant: merchant, receiptDescription: receipt.receiptDescription, imageURL: receipt.imageURL, context: CoreDataStack.shared.mainContext)
             return
             
         }
@@ -76,28 +80,28 @@ class ReceiptDetailViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
         
     }
-    
-    @IBAction func deleteButtonTapped(_ sender: UIBarButtonItem) {
-        showAlert()
-    }
-    
-    //MARK: Method for an Alert with cancel & delete show options
-    private func showAlert() {
-        // Create the alert
-        let alert = UIAlertController(title: "Delete Receipt?", message: "All data from this Receipt will be erased", preferredStyle: .alert)
-        // Add an action (button)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
-            //do something
-            self.navigationController?.popToRootViewController(animated: true) }))
-        // Adding another action
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
-            guard let receipt = self.receipt else { return }
-            //TODO: Delete function -> self.receiptController?.removeFromPersistentStore(receipt: receipt)
-            self.navigationController?.popToRootViewController(animated: true)
-        }))
-        // Show the alert
-        present(alert, animated: true, completion: nil)
-    }
+//    
+//    @IBAction func deleteButtonTapped(_ sender: UIBarButtonItem) {
+//        showAlert()
+//    }
+//    
+//    //MARK: Method for an Alert with cancel & delete show options
+//    private func showAlert() {
+//        // Create the alert
+//        let alert = UIAlertController(title: "Delete Receipt?", message: "All data from this Receipt will be erased", preferredStyle: .alert)
+//        // Add an action (button)
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+//            //do something
+//            self.navigationController?.popToRootViewController(animated: true) }))
+//        // Adding another action
+//        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
+//            guard let receipt = self.receipt else { return }
+//            //TODO: Delete function -> self.receiptController?.removeFromPersistentStore(receipt: receipt)
+//            self.navigationController?.popToRootViewController(animated: true)
+//        }))
+//        // Show the alert
+//        present(alert, animated: true, completion: nil)
+//    }
     
     func updateViews() {
         guard let receipt = receipt,
@@ -105,30 +109,24 @@ class ReceiptDetailViewController: UIViewController {
             let date = receipt.dateOfTransaction,
             let imageURL = receipt.imageURL else {
                 
-                nameTextField.isEnabled = true
-                dateTextField.isEnabled = true
-                categoryTextField.isEnabled = true
-                amountTextField.isEnabled = true
-                
                 nameTextField.text = ""
                 dateTextField.text = ""
                 categoryTextField.text = ""
                 amountTextField.text = ""
-                
                 return
         }
         
         nameTextField.text = receipt.merchant
-        //dateTextField.text = dateFormatter.string(from: date)
+        //dateTextField.text = dateFormatter.date(from: date)
         dateTextField.text = date
         categoryTextField.text = receipt.category
         amountTextField.text = amountSpent
         pictureImageView.image = UIImage(named: imageURL)
         
-        nameTextField.isEnabled = false
-        dateTextField.isEnabled = false
-        categoryTextField.isEnabled = false
-        amountTextField.isEnabled = false
+//        nameTextField.isEnabled = false
+//        dateTextField.isEnabled = false
+//        categoryTextField.isEnabled = false
+//        amountTextField.isEnabled = false
     }
     
     
@@ -141,11 +139,7 @@ class ReceiptDetailViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-//          //TODO: Add done button if theres no back button on screen
-//        //MARK: dismiss view with Done button
-//        @IBAction func doneButton(_ sender: UIBarButtonItem) {
-//            navigationController?.popToRootViewController(animated: true)
-//        }
+
     
 }
 
@@ -158,6 +152,7 @@ UINavigationControllerDelegate {
             pictureImageView.contentMode = .scaleAspectFit
             pictureImageView.image = pickedImage
             imageUpload(image: pickedImage)
+            
             
 //
 //            // Encoding the image to jpegData
@@ -176,12 +171,13 @@ UINavigationControllerDelegate {
     }
     
     func imageUpload(image: UIImage) {
-        let config = CLDConfiguration(cloudName: "iosdevlambda", secure: true) //https
+        
         let cloudinary = CLDCloudinary(configuration: config)
         
         let imageData = image.pngData()
         guard let image = imageData else { return }
         
         cloudinary.createUploader().upload(data: image, uploadPreset: cloudinaryUploadPresent)
+        //image.cldSetImage(publicId: )
     }
 }

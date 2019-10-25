@@ -15,6 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexBackgroundColor" red="0.94696706529999997" green="0.87363544881095889" blue="0.79975634809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="frV-Xb-6fp">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -41,7 +42,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" red="0.94688373800000003" green="0.87951278690000001" blue="0.79962641000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="zp5-3t-pks" secondAttribute="trailing" id="25R-1N-djO"/>
                                 <constraint firstAttribute="bottom" secondItem="zp5-3t-pks" secondAttribute="bottom" id="6tf-dV-FHU"/>
@@ -73,6 +74,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="ReceiptCell"/>
                                 <connections>
                                     <outlet property="merchantLabel" destination="QvN-zj-Nci" id="Vw5-Je-izk"/>
@@ -124,7 +126,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merchant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GC0-5N-DJ3">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="24"/>
-                                                <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.63827401399999995" green="0.51941835879999998" blue="0.35826283689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -133,42 +135,46 @@
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VBe-9V-L92">
                                         <rect key="frame" x="0.0" y="39" width="334" height="34"/>
+                                        <color key="backgroundColor" red="0.94696706529999997" green="0.87363544879999999" blue="0.79975634809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ks-Ld-A0J">
                                         <rect key="frame" x="0.0" y="88" width="334" height="24"/>
-                                        <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.63827401399999995" green="0.51941835879999998" blue="0.35826283689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$00,000" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UMK-c2-re4">
                                         <rect key="frame" x="0.0" y="127" width="334" height="34"/>
+                                        <color key="backgroundColor" red="0.94696706529999997" green="0.87363544879999999" blue="0.79975634809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfF-3u-l5m">
                                         <rect key="frame" x="0.0" y="176" width="334" height="24"/>
-                                        <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.63827401399999995" green="0.51941835879999998" blue="0.35826283689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00/00/0000" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcd-Qg-Xyb">
                                         <rect key="frame" x="0.0" y="215" width="334" height="34"/>
+                                        <color key="backgroundColor" red="0.94696706529999997" green="0.87363544879999999" blue="0.79975634809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhf-IL-lQx">
                                         <rect key="frame" x="0.0" y="264" width="334" height="24"/>
-                                        <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.63827401399999995" green="0.51941835879999998" blue="0.35826283689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AGC-4m-HIu">
                                         <rect key="frame" x="0.0" y="303" width="334" height="34"/>
+                                        <color key="backgroundColor" red="0.94696706529999997" green="0.87363544879999999" blue="0.79975634809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -182,20 +188,20 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37C-eb-Kz3">
                                 <rect key="frame" x="40" y="512" width="334" height="30"/>
-                                <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4gv-4f-CxC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Add Receipt Image">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="addImageButtonTapped:" destination="Ydg-ei-wDN" eventType="touchUpInside" id="qb8-b6-H3b"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.76686972379999996" green="0.68351256849999997" blue="0.59084159140000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="37C-eb-Kz3" firstAttribute="top" secondItem="NQl-RM-ugx" secondAttribute="bottom" constant="20" id="0gm-XT-6zn"/>
                             <constraint firstItem="3Li-K3-tiK" firstAttribute="leading" secondItem="i9Y-mI-Hsr" secondAttribute="leading" constant="40" id="EMr-Rs-Z9v"/>
@@ -209,13 +215,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i9Y-mI-Hsr"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Delete" id="IYQ-xF-XBI">
-                            <connections>
-                                <action selector="deleteButtonTapped:" destination="Ydg-ei-wDN" id="Kwy-Rj-vOX"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Details" id="3lH-vT-1YQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="u91-Jn-zE8">
                             <connections>
@@ -249,6 +249,7 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31Q-Rm-9Ux">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                        <color key="backgroundColor" red="1" green="0.93532643865394705" blue="0.86744167740067923" alpha="0.76442101883561642" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="jU8-RH-hGw"/>
                                             <constraint firstAttribute="width" constant="374" id="vVF-2d-12x"/>
@@ -258,6 +259,7 @@
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N1n-Vc-Kwx">
                                         <rect key="frame" x="0.0" y="44" width="374" height="34"/>
+                                        <color key="backgroundColor" red="1" green="0.93462154968280686" blue="0.86599690000341889" alpha="0.76442101883561642" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="JJN-St-aCo"/>
                                             <constraint firstAttribute="width" constant="374" id="L5q-Y0-yKO"/>
@@ -267,6 +269,7 @@
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8f-nd-HgF">
                                         <rect key="frame" x="0.0" y="88" width="374" height="34"/>
+                                        <color key="backgroundColor" red="1" green="0.93626629061546729" blue="0.86936804726369288" alpha="0.76442101883561642" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="374" id="7UF-qP-V4Z"/>
                                             <constraint firstAttribute="height" constant="34" id="Cnq-p5-SjI"/>
@@ -276,7 +279,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P51-Xm-CIs">
                                         <rect key="frame" x="37" y="132" width="300" height="34"/>
-                                        <color key="backgroundColor" red="0.1735630776" green="0.78053252049999999" blue="0.90817338199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="YVg-R5-OGh"/>
                                             <constraint firstAttribute="width" constant="300" id="yCl-cI-pUS"/>
@@ -304,7 +307,7 @@
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="1" green="0.89157110844539367" blue="0.77775845822259704" alpha="0.76442101883561642" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BCb-qM-BZJ" firstAttribute="trailing" secondItem="LjA-rU-7iD" secondAttribute="trailing" constant="20" id="Dp5-Ey-Hqe"/>
                             <constraint firstItem="LjA-rU-7iD" firstAttribute="top" secondItem="obz-Q9-pV7" secondAttribute="bottom" constant="30" id="KFu-Bh-AUm"/>
