@@ -79,7 +79,6 @@ class ReceiptController {
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            print(String(data: data, encoding: .utf8))
             do {
                 let receipts = try decoder.decode([ReceiptRepresentation].self, from: data)
                 self.updateReceipts(with: receipts)
@@ -305,15 +304,12 @@ class ReceiptController {
     // MARK: - Core Data CRUD Methods
 
     func createReceipt(dateOfTransaction: String, amountSpent: String, category: String, merchant: String, imageURL: String?, username: String, receiptDescription: String?, context: NSManagedObjectContext) {
-        
-//        let receipt = Receipt(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, receiptDescription: receiptDescription, context: context)
 
         let postReceiptRepresentation = PostReceiptRepresentation(dateOfTransaction: dateOfTransaction, amountSpent: amountSpent, category: category, merchant: merchant, imageURL: imageURL, username: username, description: receiptDescription)
         
         addNewReceiptToServer(postReceiptRepresentation: postReceiptRepresentation, completion: { (error) in
             if let id =  self.receiptID{
                 Receipt(id: id, postReceiptRepresentation: postReceiptRepresentation, context: context)
-                print(id)
                 CoreDataStack.shared.save(context: context)
             }
         })
@@ -330,7 +326,7 @@ class ReceiptController {
         receipt.receiptDescription = receiptDescription
         receipt.imageURL = imageURL
         
-        // TODO: PUT to database
+        // TODO: update to datatbase
         
         CoreDataStack.shared.save(context: context)
         
