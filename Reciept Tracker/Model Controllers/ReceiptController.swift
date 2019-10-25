@@ -389,7 +389,6 @@ class ReceiptController {
             } catch {
                 NSLog("Unable to decode data into ReceiptsSearched: \(error)")
             }
-            
             completion(.badDecode)
         }.resume()
     }
