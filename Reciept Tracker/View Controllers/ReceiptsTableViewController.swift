@@ -116,7 +116,9 @@ class ReceiptsTableViewController: UITableViewController {
             performSegue(withIdentifier: "LoginSegue", sender: self)
             
         } else {
-            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
 //            receiptController.fetchReceiptsFromServer { (error) in
 //                if let error = error {
 //                    NSLog("Error fetching : \(error)")
