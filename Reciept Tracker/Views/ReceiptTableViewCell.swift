@@ -41,6 +41,5 @@ class ReceiptTableViewCell: UITableViewCell {
         }
 
         priceLabel.text = receipt.amountSpent
-
     }
 }

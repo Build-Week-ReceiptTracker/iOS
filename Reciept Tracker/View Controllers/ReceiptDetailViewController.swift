@@ -82,8 +82,8 @@ class ReceiptDetailViewController: UIViewController {
     func updateViews() {
         guard let receipt = receipt,
             let amountSpent = receipt.amountSpent,
-            let date = receipt.dateOfTransaction,
-            let imageURL = receipt.imageURL else {
+            let date = receipt.dateOfTransaction else {
+            //let imageURL = receipt.imageURL else {
                 
                 nameTextField.text = ""
                 dateTextField.text = ""
@@ -97,7 +97,7 @@ class ReceiptDetailViewController: UIViewController {
         dateTextField.text = date
         categoryTextField.text = receipt.category
         amountTextField.text = amountSpent
-        pictureImageView.image = UIImage(named: imageURL)
+        //pictureImageView.image = UIImage(named: imageURL)
     }
 }
 

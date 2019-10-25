@@ -74,6 +74,7 @@ class ReceiptsTableViewController: UITableViewController {
 //            sortType = .merchant
 //            updateReceiptsToDisplay()
 //        }
+
 //    }
 //
 //        receiptController.searchForReceipts(with: searchTerm) { (error) in
@@ -115,6 +116,7 @@ class ReceiptsTableViewController: UITableViewController {
             performSegue(withIdentifier: "LoginSegue", sender: self)
             
         } else {
+            
 //            receiptController.fetchReceiptsFromServer { (error) in
 //                if let error = error {
 //                    NSLog("Error fetching : \(error)")
