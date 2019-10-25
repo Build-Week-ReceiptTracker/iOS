@@ -18,15 +18,15 @@ class ReceiptDetailViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var pictureImageView: UIImageView!
     
+    //Properties
     var receipt: Receipt?
     var receiptController: ReceiptController?
     var logInController: LogInController?
     let dateFormatter = DateFormatter()
     let imagePicker = UIImagePickerController()
-//    var jpegImage: String = ""
     let config = CLDConfiguration(cloudName: "iosdevlambda", secure: true) //https
     
-    //TODO: Pass them to the file that manages the image uploading
+    //Cloudinary
     var cloudinaryURL =  "https://api.cloudinary.com/v1_1/iosdevlambda"
     var cloudinaryUploadPresent = "z2og3e0q"
     
@@ -54,7 +54,7 @@ class ReceiptDetailViewController: UIViewController {
                 !date.isEmpty,
                 !category.isEmpty else { return }
             
-            //TODO: Call method(s) to create new receipt
+            //Create new receipt
             receiptController?.createReceipt(dateOfTransaction: date, amountSpent: amountString, category: category, merchant: merchant, imageURL: nil, username: username, receiptDescription: nil, context: CoreDataStack.shared.mainContext)
             
         } else {
@@ -78,34 +78,12 @@ class ReceiptDetailViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
         
     }
-//    
-//    @IBAction func deleteButtonTapped(_ sender: UIBarButtonItem) {
-//        showAlert()
-//    }
-//    
-//    //MARK: Method for an Alert with cancel & delete show options
-//    private func showAlert() {
-//        // Create the alert
-//        let alert = UIAlertController(title: "Delete Receipt?", message: "All data from this Receipt will be erased", preferredStyle: .alert)
-//        // Add an action (button)
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
-//            //do something
-//            self.navigationController?.popToRootViewController(animated: true) }))
-//        // Adding another action
-//        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
-//            guard let receipt = self.receipt else { return }
-//            //TODO: Delete function -> self.receiptController?.removeFromPersistentStore(receipt: receipt)
-//            self.navigationController?.popToRootViewController(animated: true)
-//        }))
-//        // Show the alert
-//        present(alert, animated: true, completion: nil)
-//    }
-    
+
     func updateViews() {
         guard let receipt = receipt,
             let amountSpent = receipt.amountSpent,
-            let date = receipt.dateOfTransaction,
-            let imageURL = receipt.imageURL else {
+            let date = receipt.dateOfTransaction else {
+            //let imageURL = receipt.imageURL else {
                 
                 nameTextField.text = ""
                 dateTextField.text = ""
@@ -119,14 +97,8 @@ class ReceiptDetailViewController: UIViewController {
         dateTextField.text = date
         categoryTextField.text = receipt.category
         amountTextField.text = amountSpent
-        pictureImageView.image = UIImage(named: imageURL)
-        
-//        nameTextField.isEnabled = false
-//        dateTextField.isEnabled = false
-//        categoryTextField.isEnabled = false
-//        amountTextField.isEnabled = false
+        //pictureImageView.image = UIImage(named: imageURL)
     }
-    
 }
 
 extension ReceiptDetailViewController: UIImagePickerControllerDelegate,
@@ -139,14 +111,6 @@ UINavigationControllerDelegate {
             pictureImageView.image = pickedImage
             imageUpload(image: pickedImage)
             
-            
-//
-//            // Encoding the image to jpegData
-//            let jpegCompressionQuality: CGFloat = 0.9
-//
-//            if let jpegImage = pickedImage.jpegData(compressionQuality: jpegCompressionQuality)?.base64EncodedString() {
-//                self.jpegImage = jpegImage
-//            }
         }
         dismiss(animated: true, completion: nil)
     }
@@ -164,6 +128,5 @@ UINavigationControllerDelegate {
         guard let image = imageData else { return }
         
         cloudinary.createUploader().upload(data: image, uploadPreset: cloudinaryUploadPresent)
-        //image.cldSetImage(publicId: )
     }
 }

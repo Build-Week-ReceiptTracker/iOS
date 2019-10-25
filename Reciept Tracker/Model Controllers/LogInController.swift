@@ -22,24 +22,6 @@ class LogInController {
     var username: String?
     private let loginBaseURL = URL(string: "https://api-receipt-tracker.herokuapp.com/api")!
 
-//    // MARK: Performing fetchAllReceipt Network call
-//
-//    func fetchAllReciepts( completion: @escaping (Result<[String], NetworkingError>) -> Void) {
-//
-//        guard let bearer = bearer else {
-//            completion(.failure(.noBearer))
-//            return
-//        }
-//
-//        let requestURL = loginBaseURL
-//            .appendingPathComponent("reciepts")
-//
-//        var request = URLRequest(url: requestURL)
-//        request.httpMethod = HTTPMethod.get.rawValue
-//        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
-//    }
-
-
     // MARK: - Sign Up  &  Log In Functions :
     
     // MARK: - Sign Up URLSessionDataTask
