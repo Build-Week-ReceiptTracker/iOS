@@ -32,8 +32,9 @@ class ReceiptsTableViewController: UITableViewController {
     
     var sortType: SortingType = .merchant
    // var sortOption: SortingOption = .ascending
-
-   // var receipts: [ReceiptRepresentation] = []
+    
+    var receipts: [ReceiptRepresentation] = []
+   
     
     lazy var fetchedResultsController: NSFetchedResultsController<Receipt> = {
 
@@ -68,14 +69,19 @@ class ReceiptsTableViewController: UITableViewController {
         switch index {
         case 0 :
             sortType = .merchant
+            updateReceiptsToDisplay()
         case 1:
             sortType = .category
+            updateReceiptsToDisplay()
         case 2:
             sortType = .amount
+            updateReceiptsToDisplay()
         case 3:
             sortType = .date
+            updateReceiptsToDisplay()
         default:
             sortType = .merchant
+            updateReceiptsToDisplay()
         }
         
 //        receiptController.searchForReceipts(with: sortType) { (error) in
@@ -87,44 +93,53 @@ class ReceiptsTableViewController: UITableViewController {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else { return }
         
-        receiptController.searchForReceipts(with: searchTerm) { (error) in
+        switch sortType {
             
-            guard error == nil else { return }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        case .merchant:
+            <#code#>
+        case .amount:
+            <#code#>
+        case .date:
+            <#code#>
+        case .category:
+            <#code#>
+        @unknown default:
+            <#code#>
         }
         
         
         
-        
-        
-//        var receipts: [ReceiptRepresentation] = []
+//        receiptController.searchForReceipts(with: searchTerm) { (error) in
 //
-//        //TODO: fetch all receipts in server and save them in this array
-//        let allReceipts: [ReceiptRepresentation] = []
+//            guard error == nil else { return }
 //
-//        let searchedReceipts = allReceipts.filter{ $0.merchant == searchTerm }
-//        let searchedIDs = searchedReceipts.map{ $0.id }
-//
-//        for id in searchedIDs {
-//            if let id = id {
-//                receiptController.searchForReceipt(searchID: String(id)) { (result) in
-//
-//                    do {
-//                        let receipt = try result.get()
-//                        receipts.append(receipt)
-//                        self.receipts = receipts
-//                    } catch {
-//                        NSLog("Error fetching animal details: \(error)")
-//                    }
-//                }
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
 //            }
 //        }
     }
     
- 
+    func updateReceiptsToDisplay() {
+        receipts = receiptController.receipts
+        
+        switch sortType {
+            
+        case .merchant :
+            receipts.sort(by: { $0.merchant < $1.merchant })
+            tableView.reloadData()
+        case .amount:
+            receipts.sort(by: { $0.amountSpent < $1.amountSpent })
+            tableView.reloadData()
+        case .date:
+            receipts.sort(by: { $0.dateOfTransaction < $1.dateOfTransaction })
+            tableView.reloadData()
+        case .category:
+            receipts.sort(by: { $0.category < $1.category })
+            tableView.reloadData()
+        }
+    }
+    
+    
     // MARK: - Segue to Login page
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -137,6 +152,7 @@ class ReceiptsTableViewController: UITableViewController {
                 if let error = error {
                     NSLog("Error fetching : \(error)")
                 }
+                self.receipts = self.receiptController.receipts
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -158,14 +174,14 @@ class ReceiptsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return receiptController.receipts.count
+        return receipts.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as? ReceiptTableViewCell else { return UITableViewCell() }
         
-        cell.receiptRepresentation = receiptController.receipts[indexPath.row]
+        cell.receiptRepresentation = receipts[indexPath.row]
         
         return cell
     }
