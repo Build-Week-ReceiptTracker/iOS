@@ -24,6 +24,7 @@ class ReceiptDetailViewController: UIViewController {
     let dateFormatter = DateFormatter()
     let imagePicker = UIImagePickerController()
 //    var jpegImage: String = ""
+    let config = CLDConfiguration(cloudName: "iosdevlambda", secure: true) //https
     
     //TODO: Pass them to the file that manages the image uploading
     var cloudinaryURL =  "https://api.cloudinary.com/v1_1/iosdevlambda"
@@ -152,6 +153,7 @@ UINavigationControllerDelegate {
             pictureImageView.image = pickedImage
             imageUpload(image: pickedImage)
             
+            
 //
 //            // Encoding the image to jpegData
 //            let jpegCompressionQuality: CGFloat = 0.9
@@ -169,12 +171,13 @@ UINavigationControllerDelegate {
     }
     
     func imageUpload(image: UIImage) {
-        let config = CLDConfiguration(cloudName: "iosdevlambda", secure: true) //https
+        
         let cloudinary = CLDCloudinary(configuration: config)
         
         let imageData = image.pngData()
         guard let image = imageData else { return }
         
         cloudinary.createUploader().upload(data: image, uploadPreset: cloudinaryUploadPresent)
+        //image.cldSetImage(publicId: )
     }
 }
